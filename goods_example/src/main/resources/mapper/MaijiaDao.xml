@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micah.goods_example.dao.MaijiaDao">
+
+    <resultMap id="BaseResultMap" type="com.micah.goods_example.entity.Maijia">
+        <!--@Table maijia-->
+        <result property="majianame" column="MaJiaName" jdbcType="VARCHAR"/>
+        <result property="maijiaid" column="MaiJiaID" jdbcType="INTEGER"/>
+        <result property="bumenid" column="buMenid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          MaJiaName, MaiJiaID, buMenid
+        from example_goods.maijia
+        where MaiJiaID = #{maijiaid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          MaJiaName, MaiJiaID, buMenid
+        from example_goods.maijia
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          MaJiaName, MaiJiaID, buMenid
+        from example_goods.maijia
+        <where>
+            <if test="majianame != null and majianame != ''">
+                and MaJiaName = #{majianame}
+            </if>
+            <if test="maijiaid != null">
+                and MaiJiaID = #{maijiaid}
+            </if>
+            <if test="bumenid != null">
+                and buMenid = #{bumenid}
+            </if>
+        </where>
+    </select>
+<!--通过实体作为筛选条件查询-->
+    <select id="queryOne" resultMap="BaseResultMap">
+        select
+          MaJiaName, MaiJiaID, buMenid
+        from example_goods.maijia
+        <where>
+            <if test="majianame != null and majianame != ''">
+                and MaJiaName = #{majianame}
+            </if>
+            <if test="maijiaid != null">
+                and MaiJiaID = #{maijiaid}
+            </if>
+            <if test="bumenid != null">
+                and buMenid = #{bumenid}
+            </if>
+        </where>
+        limit 0,1
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="maijiaid" useGeneratedKeys="true">
+        insert into example_goods.maijia(MaJiaName, buMenid)
+        values (#{majianame}, #{bumenid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update example_goods.maijia
+        <set>
+            <if test="majianame != null and majianame != ''">
+                MaJiaName = #{majianame},
+            </if>
+            <if test="bumenid != null">
+                buMenid = #{bumenid},
+            </if>
+        </set>
+        where MaiJiaID = #{maijiaid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from example_goods.maijia where MaiJiaID = #{maijiaid}
+    </delete>
+
+</mapper>

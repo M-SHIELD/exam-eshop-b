@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.micah.goods_example.dao.CollectionDao">
+
+<!--    <sql id="getGoodsName" databaseId=""-->
+    <insert id="saveCollection" parameterType="map">
+--         INSERT
+--             SET collection goods_id = 11,
+--             maijia_id = 2,
+--             goods_name = IN (
+--             SELECT
+--                 g.pname
+--             FROM
+--                 goods g
+--             WHERE
+--                 pid = 11)
+    </insert>
+
+    <select id="getAllCollectionByMaijiaId" resultType="com.micah.goods_example.entity.Collection" parameterType="map">
+        SELECT
+            c.id,
+            g.pid goodsId,
+            c.goods_name,
+            g.price,
+            g.picturePath goods_img,
+            c.maijia_id,
+            c.collection_time
+        FROM
+            maijia m,
+            goods g,
+            collection c
+        <where>
+            c.maijia_id = m.MaiJiaID
+            AND c.goods_id = g.pid
+            AND c.maijia_id = #{maiJiaId}
+            ORDER BY c.collection_time DESC
+        </where>
+    </select>
+</mapper>

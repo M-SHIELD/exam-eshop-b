@@ -1,0 +1,19 @@
+server:
+  port: 8001
+spring:
+  resources:
+    static-locations: classpath:static/,file:static/
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/example_goods?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    name: example_goods
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto # 自增
+  logic-delete-value: 1 # 逻辑已删除值(默认为 1) logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
