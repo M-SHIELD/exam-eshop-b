@@ -5,9 +5,9 @@ spring:
     static-locations: classpath:static/,file:static/
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/example_goods?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.137.205:3306/example_goods?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
     username: root
-    password:
+    password: root
     type: com.alibaba.druid.pool.DruidDataSource
   application:
     name: example_goods
