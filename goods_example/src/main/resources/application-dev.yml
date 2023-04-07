@@ -4,8 +4,8 @@ spring:
   resources:
     static-locations: classpath:static/,file:static/
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://119.91.141.30:3306/goods_example?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://119.91.141.30:3306/goods_example?useSSL=false&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
     username: root
     password: Micahmysqlmima123.
     type: com.alibaba.druid.pool.DruidDataSource
