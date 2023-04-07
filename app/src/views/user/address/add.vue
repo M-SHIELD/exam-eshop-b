@@ -7,28 +7,29 @@
                 @click-left="onClickLeft"
         />
         <!-- 添加地址 -->
-        <van-address-edit
-                :area-list="areaList"
-                show-postal
-                show-set-default
-                show-search-result
-                :search-result="searchResult"
-                :area-columns-placeholder="['请选择', '请选择', '请选择']"
-                @save="onSave"
-                @change-detail="onChangeDetail"
-                save-button-text="保存并使用"
-        />
+      <van-address-edit
+          :area-list="areaList"
+          show-postal
+          show-set-default
+          show-search-result
+          tel-maxlength="11"
+          :search-result="searchResult"
+          :area-columns-placeholder="['请选择', '请选择', '请选择']"
+          @save="onSave"
+          @change-detail="onChangeDetail"
+          save-button-text="保存并使用"
+      />
     </div>
 </template>
 
 <script>
     import areaList from '@/utils/area'
-    import {addAddress} from "@/api/user/address"
+    import {addAddress} from "@/api/user/address.js"
     import {Toast} from 'vant'
     export default {
         data() {
             return {
-                areaList: areaList,
+                areaList,
                 searchResult: []
             }
         },
@@ -68,6 +69,6 @@
         bottom: 0;
         background-color: #f5f5f5;
         z-index: 2001;
-        padding-top: 3rem;
+        padding-top: 1rem;
     }
 </style>

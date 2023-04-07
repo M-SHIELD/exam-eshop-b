@@ -1,9 +1,8 @@
 import request from '@/utils/request'
-
 // 用户地址
 export function addressList(params) {
     return request({
-        url: '/ums/api.app/v1/addresses',
+        url: '/address',
         method: 'get',
         params: params
     })

@@ -9,7 +9,7 @@
           <img class="header-logo" src="@/assets/logo_png.png" alt="">
         </van-col>
         <van-col>
-          <van-search class="header-search" v-model="search_value" placeholder="请输入搜索关键词"/>
+          <van-search class="header-search" v-model="search_value" placeholder="请输入搜索关键词" @click="gotosearch"/>
         </van-col>
         <van-col>
           <van-button class="header-btn-login" size="small" plain hairline type="danger">登录</van-button>
@@ -159,6 +159,9 @@ export default {
       if (index === 1) {//积分
         this.$router.push('/prolist?isScore=1')
       }
+    },
+    gotosearch() {
+      this.$router.push({name:'search'})
     }
   }
 }

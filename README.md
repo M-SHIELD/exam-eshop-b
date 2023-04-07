@@ -21,7 +21,7 @@
 
 ## 快速使用
 1. git bash执行` git clone git@gitee.com:liveablestudio/shoulders-of-giants.git`拉取项目
-2. 导入`goods_sql.sql`数据库文件到`mysql`
+2. 导入`是下goods_sql.sql`数据库文件到`mysql`
 3. 修改 `goods_example\src\main\resources\application-dev.yml` 数据库账号密码
 
 

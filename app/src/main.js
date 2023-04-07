@@ -11,7 +11,7 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-//使用vant
+// 使用vant
 // import Vant from 'vant';
 // import 'vant/lib/index.css';
 // Vue.use(Vant);
@@ -44,11 +44,24 @@ Vue.use(Sticky);
 import { TreeSelect } from 'vant';
 Vue.use(TreeSelect);
 
+import { AddressList } from 'vant';
+Vue.use(AddressList);
+
+import { AddressEdit } from 'vant';
+Vue.use(AddressEdit);
+
+import { ContactEdit } from 'vant';
+Vue.use(ContactEdit);
+
+import { Empty } from 'vant';
+Vue.use(Empty);
+
 //  全局引入 过滤器
 import '@/utils/filter'
 
 import axios from "axios";
 
+import './mock/mockserver.js'
 
 Vue.prototype.$axios = axios
 

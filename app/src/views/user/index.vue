@@ -56,7 +56,7 @@
           浏览足迹
         </van-col>
         <van-col span="6" @click="gotoAddress">
-          <van-icon class="iconfont" class-prefix="icon" name="shouhuodizhi1"/>
+          <van-icon class="iconfont" class-prefix="icon" name="shouhuodizhi1" />
           地址管理
         </van-col>
         <van-col span="6" @click="toWallet">
@@ -94,7 +94,6 @@
 
     <FooterMenu :active="3"></FooterMenu>
 
-
   </div>
 </template>
 
@@ -112,7 +111,7 @@ export default {
       Toast("退出成功")
     },
     gotoAddress: function () {
-      this.$router.push({path: '/user/address'})
+      this.$router.push({path: '/address'})
     },
     gotoCoupon: function () {
       this.$router.push({path: '/user/coupon'})

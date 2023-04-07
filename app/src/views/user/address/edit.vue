@@ -24,7 +24,7 @@
 
 <script>
     import areaList from '@/utils/area'
-    import {getAddressInfo,editAddress,deleteAddress} from '@/api/user/address'
+    // import {getAddressInfo,editAddress,deleteAddress} from '@/api/user/address'
     import {Toast} from 'vant'
 
     export default {
@@ -37,19 +37,19 @@
             }
         },
         mounted() {
-            this.initData()
+            // this.initData()
         },
         methods: {
 
-            initData() {
-                getAddressInfo(this.addressId).then(response => {
-                    this.addressInfo = response.data
-                    this.addressInfo.areaCode=response.data.area_code
-                    this.addressInfo.postalCode = response.data.postal_code
-                    this.addressInfo.addressDetail=response.data.address_detail
-                    this.addressInfo.isDefault=response.data.is_default
-                })
-            },
+            // initData() {
+            //     getAddressInfo(this.addressId).then(response => {
+            //         this.addressInfo = response.data
+            //         this.addressInfo.areaCode=response.data.area_code
+            //         this.addressInfo.postalCode = response.data.postal_code
+            //         this.addressInfo.addressDetail=response.data.address_detail
+            //         this.addressInfo.isDefault=response.data.is_default
+            //     })
+            // },
             onClickLeft() {
                 this.$router.back()
             },
@@ -96,6 +96,6 @@
         bottom: 0;
         background-color: #f5f5f5;
         z-index: 2001;
-        padding-top: 3rem;
+        padding-top: 1rem;
     }
 </style>
