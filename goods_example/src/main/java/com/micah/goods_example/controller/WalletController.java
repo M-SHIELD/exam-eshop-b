@@ -1,9 +1,9 @@
 package com.micah.goods_example.controller;
 
-import com.micah.goods_example.entity.Wallet;
-import com.micah.goods_example.entity.WalletDTO;
+import com.micah.goods_example.entity.dao.Wallet;
+import com.micah.goods_example.entity.dto.WalletDTO;
 import com.micah.goods_example.service.WalletService;
-import com.micah.goods_example.utils.R;
+import com.micah.goods_example.util.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,8 @@ import java.util.List;
 
 @RestController
 @Api(tags = "钱包相关接口")
-@RequestMapping("wallet")
+@RequestMapping("api/wallet")
+@CrossOrigin
 public class WalletController {
 
     @Resource

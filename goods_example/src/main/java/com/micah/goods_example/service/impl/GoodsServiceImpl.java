@@ -9,10 +9,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.micah.goods_example.dao.GoodsDao;
 import com.micah.goods_example.dao.SkuKeyDao;
 import com.micah.goods_example.dao.SkuValueDao;
-import com.micah.goods_example.entity.*;
+import com.micah.goods_example.entity.dao.*;
+import com.micah.goods_example.entity.dto.OrderDTO;
 import com.micah.goods_example.enums.GoodsOrderByEnum;
 import com.micah.goods_example.service.GoodsService;
-import com.micah.goods_example.utils.R;
+import com.micah.goods_example.util.R;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

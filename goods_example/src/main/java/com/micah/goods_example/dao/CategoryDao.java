@@ -1,7 +1,7 @@
 package com.micah.goods_example.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.micah.goods_example.entity.Category;
+import com.micah.goods_example.entity.dao.Category;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

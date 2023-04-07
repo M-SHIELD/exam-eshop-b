@@ -2,10 +2,10 @@ package com.micah.goods_example.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.micah.goods_example.entity.Category;
-import com.micah.goods_example.entity.Goods;
-import com.micah.goods_example.entity.GoodsPage;
-import com.micah.goods_example.entity.OrderDTO;
+import com.micah.goods_example.entity.dao.Category;
+import com.micah.goods_example.entity.dao.Goods;
+import com.micah.goods_example.entity.dao.GoodsPage;
+import com.micah.goods_example.entity.dto.OrderDTO;
 
 import java.util.List;
 

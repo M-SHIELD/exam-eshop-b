@@ -1,6 +1,6 @@
 package com.micah.goods_example.service;
 
-import com.micah.goods_example.entity.Category;
+import com.micah.goods_example.entity.dao.Category;
 
 import java.util.List;
 

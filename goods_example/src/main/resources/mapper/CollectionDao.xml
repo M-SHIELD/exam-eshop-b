@@ -16,7 +16,7 @@
 --                 pid = 11)
     </insert>
 
-    <select id="getAllCollectionByMaijiaId" resultType="com.micah.goods_example.entity.Collection" parameterType="map">
+    <select id="getAllCollectionByMaijiaId" resultType="com.micah.goods_example.entity.dao.Collection" parameterType="map">
         SELECT
             c.id,
             g.pid goodsId,

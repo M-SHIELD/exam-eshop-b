@@ -2,7 +2,7 @@ package com.micah.goods_example.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.micah.goods_example.dao.CategoryDao;
-import com.micah.goods_example.entity.Category;
+import com.micah.goods_example.entity.dao.Category;
 import com.micah.goods_example.service.CategoryService;
 import org.springframework.stereotype.Service;
 

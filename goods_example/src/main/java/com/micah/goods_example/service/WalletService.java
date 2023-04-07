@@ -1,7 +1,7 @@
 package com.micah.goods_example.service;
 
-import com.micah.goods_example.entity.Wallet;
-import com.micah.goods_example.entity.WalletDTO;
+import com.micah.goods_example.entity.dao.Wallet;
+import com.micah.goods_example.entity.dto.WalletDTO;
 
 import java.util.List;
 

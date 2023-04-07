@@ -1,19 +1,17 @@
 package com.micah.goods_example.controller;
 
-import com.micah.goods_example.entity.Collection;
+import com.micah.goods_example.entity.dao.Collection;
 import com.micah.goods_example.service.CollectionService;
-import com.micah.goods_example.utils.R;
+import com.micah.goods_example.util.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Api(tags = "收藏夹相关接口")
-@RequestMapping("/collection")
+@CrossOrigin
+@RequestMapping("api/collection")
 public class CollectionController {
 
     @Autowired

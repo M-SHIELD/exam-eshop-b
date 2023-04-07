@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.micah.goods_example.dao.OrderDao">
 
-    <resultMap id="BaseResultMap" type="com.micah.goods_example.entity.Order">
+    <resultMap id="BaseResultMap" type="com.micah.goods_example.entity.dao.Order">
         <!--@Table 商品订单-->
         <result property="ddid" column="订单ID" jdbcType="INTEGER"/>
         <result property="pid" column="pid" jdbcType="INTEGER"/>
@@ -83,7 +83,7 @@
         </where>
         limit 0,1
     </select>
-    <select id="getGoodsOrderByMaiJiaId" resultType="com.micah.goods_example.entity.OrderDTO" parameterType="map">
+    <select id="getGoodsOrderByMaiJiaId" resultType="com.micah.goods_example.entity.dto.OrderDTO" parameterType="map">
         SELECT
             s.`订单ID`,
             g.pname,

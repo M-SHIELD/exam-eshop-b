@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.micah.goods_example.dao.MaijiaDao">
 
-    <resultMap id="BaseResultMap" type="com.micah.goods_example.entity.Maijia">
+    <resultMap id="BaseResultMap" type="com.micah.goods_example.entity.dao.Maijia">
         <!--@Table maijia-->
         <result property="majianame" column="MaJiaName" jdbcType="VARCHAR"/>
         <result property="maijiaid" column="MaiJiaID" jdbcType="INTEGER"/>

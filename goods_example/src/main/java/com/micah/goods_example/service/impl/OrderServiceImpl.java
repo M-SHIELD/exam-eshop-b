@@ -2,8 +2,8 @@ package com.micah.goods_example.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.micah.goods_example.dao.OrderDao;
-import com.micah.goods_example.entity.Order;
-import com.micah.goods_example.entity.OrderDTO;
+import com.micah.goods_example.entity.dao.Order;
+import com.micah.goods_example.entity.dto.OrderDTO;
 import com.micah.goods_example.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

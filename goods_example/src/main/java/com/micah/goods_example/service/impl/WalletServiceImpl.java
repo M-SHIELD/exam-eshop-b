@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.micah.goods_example.dao.RechargeSchemeDao;
 import com.micah.goods_example.dao.WalletDao;
-import com.micah.goods_example.entity.RechargeScheme;
-import com.micah.goods_example.entity.Wallet;
-import com.micah.goods_example.entity.WalletDTO;
+import com.micah.goods_example.entity.dao.RechargeScheme;
+import com.micah.goods_example.entity.dao.Wallet;
+import com.micah.goods_example.entity.dto.WalletDTO;
 import com.micah.goods_example.service.WalletService;
 import org.springframework.stereotype.Service;
 

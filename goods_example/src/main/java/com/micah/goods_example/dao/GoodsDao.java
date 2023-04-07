@@ -1,7 +1,7 @@
 package com.micah.goods_example.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.micah.goods_example.entity.Goods;
+import com.micah.goods_example.entity.dao.Goods;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
