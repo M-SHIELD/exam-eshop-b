@@ -7,7 +7,8 @@
           height="100"
           src="https://xunda-ui.oss-cn-shenzhen.aliyuncs.com/2021-11-09/defaultpic.png"
       />
-      <span class="user-info-name">micah</span>
+      <span class="user-info-name" v-if="token">micah</span>
+      <span class="user-info-name" v-if="!token"><span @click="$router.push('/login')">登录/</span><span>注册</span></span>
     </van-row>
 
     <!--    钱包-->
