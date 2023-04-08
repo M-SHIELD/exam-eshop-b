@@ -32,6 +32,11 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/user/login") //登录
                 .excludePathPatterns("/api/user/register") //注册
+                .excludePathPatterns("/api/category/**") //分类
+                .excludePathPatterns("/api/collection/**") //
+                .excludePathPatterns("/api/goods/**") //
+                .excludePathPatterns("/api/order/**") //
+                .excludePathPatterns("/api/wallet/**") //
                 .excludePathPatterns("/doc.html")//文档地址
         ;
     }

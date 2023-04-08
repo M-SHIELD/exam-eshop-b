@@ -25,7 +25,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     response => {
         if (response.data.code != undefined) {
-            if (response.data.code !== 0) {
+            if (response.data.code !== 0 && response.data.code !== 200) {
                 Toast.fail('请求失败')
                 return Promise.reject(response.data.msg || 'error')
             } else {
