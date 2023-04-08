@@ -3,7 +3,9 @@
     <!--  导航  -->
     <van-nav-bar
         left-arrow
-        @click-left="$router.back(-1)"
+        right-text="注册"
+        @click-left="$router.push('/')"
+        @click-right="$router.push('/landing')"
     />
     <div class="textbox">
       <span>手机快捷登录</span><br/>

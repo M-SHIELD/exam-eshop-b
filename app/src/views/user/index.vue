@@ -1,14 +1,21 @@
 <template>
   <div class="user">
     <van-row class="user-info">
+<!--      <van-image-->
+<!--          v-if="!this.token"-->
+<!--          round-->
+<!--          width="100"-->
+<!--          height="100"-->
+<!--          src="https://xunda-ui.oss-cn-shenzhen.aliyuncs.com/2021-11-09/defaultpic.png"-->
+<!--      />-->
       <van-image
           round
           width="100"
           height="100"
-          src="https://xunda-ui.oss-cn-shenzhen.aliyuncs.com/2021-11-09/defaultpic.png"
+          :src="this.userlist.avator!=null?this.userlist.avator:'https://xunda-ui.oss-cn-shenzhen.aliyuncs.com/2021-11-09/defaultpic.png'"
       />
       <span class="user-info-name" v-if="token">micah</span>
-      <span class="user-info-name" v-if="!token"><span @click="$router.push('/login')">登录/</span><span>注册</span></span>
+      <span class="user-info-name" v-if="!token"><span @click="$router.push('/login')">登录/</span><span @click="$router.push('/landing')">注册</span></span>
     </van-row>
 
     <!--    钱包-->
@@ -101,15 +108,28 @@
 <script>
 import {Toast} from 'vant'
 import FooterMenu from "@/components/footerMenu";
-
+import {postuserinformation} from "@/api/userinformation";
 export default {
   data(){
     return{
-      token: localStorage.getItem('TOKEN')? 1 : 0
+      token: localStorage.getItem('TOKEN')? 1 : 0,
+      userlist:{}
     }
   },
   components: {FooterMenu},
+  mounted() {
+    this.init()
+  },
   methods: {
+    init(){
+      if(this.token){
+        postuserinformation().then(res => {
+          if(res.code == 200){
+            this.userlist = res.data
+          }
+        })
+      }
+    },
     handleOpenOrder: function () {
       this.$router.push({path: '/user/order'})
     },
