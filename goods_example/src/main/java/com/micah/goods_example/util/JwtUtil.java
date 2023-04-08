@@ -118,7 +118,16 @@ public class JwtUtil {
      */
     public static boolean isExpiredJWT(String jwt) {
         try {
-            parseJWT(jwt);
+            Claims claims = parseJWT(jwt);
+            Date expiration = claims.getExpiration();
+            Date date = new Date();
+            log.info("-------------------所减时间"+(date.getTime()- expiration.getTime()));
+            if (expiration.before(date)) {
+                log.info("JWT令牌已过期");
+                return false;
+            } else {
+                // Token未过期
+            }
         } catch (Exception e) {
             //e.printStackTrace();
             log.info("JWT令牌验证非法");

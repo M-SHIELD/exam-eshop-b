@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserBo {
     //用户id
-    private Long uid;
+    private Integer uid;
     //用户账户(跟accout一样)
     private String username;
 }

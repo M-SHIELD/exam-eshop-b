@@ -7,11 +7,14 @@ import com.micah.goods_example.entity.model.LoginParam;
 import com.micah.goods_example.entity.model.RegisterParam;
 import com.micah.goods_example.service.UserService;
 import com.micah.goods_example.util.R;
+import com.micah.goods_example.util.module.GetUserInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -38,6 +41,16 @@ public class UserController {
 
         return userService.login(loginParam);
     }
+
+    @ApiOperation("获取用户信息")
+    @PostMapping("/get")
+    public R getInfo(HttpServletRequest httpServletRequest) {
+
+        Long uid = GetUserInfo.getUid(httpServletRequest);
+        return userService.getInfo(uid);
+    }
+
+
 
     @ApiOperation("注册")
     @PostMapping("/register")

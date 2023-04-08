@@ -36,7 +36,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/api/collection/**") //
                 .excludePathPatterns("/api/goods/**") //
                 .excludePathPatterns("/api/order/**") //
-                .excludePathPatterns("/api/wallet/**") //
+//                .excludePathPatterns("/api/wallet/**") //
                 .excludePathPatterns("/doc.html")//文档地址
         ;
     }

@@ -44,18 +44,19 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         if (user == null) {
             return R.error("用户不存在或密码不对");
         }
-//        LocalUser.setUser(user, user.getUid());
-        /*返回带信息的token*/
+
+        //将需要存储的信息放入到jwt内
         UserBo userBo = BeanCopyUtils.copyBean(user, UserBo.class); /*拷贝信息*/
+        userBo.setUid(user.getId());
         String jsonEshopUserBo = JSON.toJSONString(userBo);
-        /*在创建jwt的同时，将用户信息保存到本地 LocalUser中*/
         String jwt = JwtUtil.createJWT(jsonEshopUserBo);/*封装用户信息到JWT*/
         String expiration = JwtUtil.getExpiration(jwt);//获取过期时间
-//        EshopUserVo eshopUserVo = BeanCopyUtils.copyBean(user, EshopUserVo.class);/*拷贝用户信息*/
+
+
         Map<String, Object> map = new HashMap<>();
         map.put("token", jwt);
         map.put("expires_time", expiration);
-//        map.put("user", eshopUserVo);
+
 
         return R.ok(map).put("msg", "登录成功");
 
@@ -71,13 +72,22 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
                 .setUpdateTime(new Date())
                 .setIsDel(Boolean.FALSE)
                 .setCreateTime(new Date())
+                .setAvator("https://th.bing.com/th/id/R.629105f8e48009c659b8a4048adef1cc?rik=0LttQdHqnl3ang&riu=http%3a%2f%2fimg.wxcha.com%2ffile%2f202005%2f19%2fdeb4d01b77.jpg&ehk=6DKzNVR5O4Oa%2fZxvhM9ea0W9jpJVSfAZVW4mPemcz3k%3d&risl=&pid=ImgRaw&r=0")
                 .setEmail(registerParam.getEmail());
 
         boolean save = save(user);
         if (save) {
             return R.ok("注册成功");
         }
-        return R.error("注册失败");
+        return R.init(AppHttpCodeEnum.NO_REGISTER_SUCCESS);
 
+    }
+
+    @Override
+    public R getInfo(Long uid) {
+        LambdaQueryWrapper<User> userLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        userLambdaQueryWrapper.eq(User::getId,uid);
+        User one = getOne(userLambdaQueryWrapper);
+        return R.ok().put("data",one);
     }
 }

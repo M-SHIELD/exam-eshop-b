@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 
 import com.micah.goods_example.enums.AppHttpCodeEnum;
 import com.micah.goods_example.util.JwtUtil;
+import com.micah.goods_example.util.R;
 import com.micah.goods_example.util.ResponseResult;
 import com.micah.goods_example.util.WebUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
             if (token == null) {
                 //HttpServletResponse.SC_UNAUTHORIZED 可以获取一些响应码
                 //封装返回数据
-                WebUtils.renderString(response, JSON.toJSONString(ResponseResult.errorResult(AppHttpCodeEnum.NO_TOKEN_OPERATE)));
+                WebUtils.renderString(response, JSON.toJSONString(R.init(AppHttpCodeEnum.NO_TOKEN_OPERATE)));
                 return false;
             }
 
@@ -56,7 +57,7 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
                 return true;
             } else {
                 //封装返回数据
-                WebUtils.renderString(response, JSON.toJSONString(ResponseResult.errorResult(AppHttpCodeEnum.TOKEN_ILLEGAL)));
+                WebUtils.renderString(response, JSON.toJSONString(R.init(AppHttpCodeEnum.TOKEN_ILLEGAL)));
                 return false;
             }
 

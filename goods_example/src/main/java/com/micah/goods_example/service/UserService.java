@@ -11,4 +11,6 @@ public interface UserService extends IService<User> {
     R login(LoginParam loginParam);
 
     R reg(RegisterParam registerParam);
+
+    R getInfo(Long uid);
 }
