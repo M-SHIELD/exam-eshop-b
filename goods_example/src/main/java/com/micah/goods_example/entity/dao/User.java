@@ -5,12 +5,14 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * user
  * @author
  */
 @ApiModel(value="com.micah.goods_example.entity.User用户表")
+@Accessors(chain= true)
 @Data
 public class User implements Serializable {
     /**

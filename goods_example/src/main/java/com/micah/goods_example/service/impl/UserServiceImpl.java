@@ -7,13 +7,18 @@ import com.micah.goods_example.dao.UserDao;
 import com.micah.goods_example.entity.bo.UserBo;
 import com.micah.goods_example.entity.dao.User;
 import com.micah.goods_example.entity.model.LoginParam;
+import com.micah.goods_example.entity.model.RegisterParam;
+import com.micah.goods_example.enums.AppFromEnum;
+import com.micah.goods_example.enums.AppHttpCodeEnum;
 import com.micah.goods_example.service.UserService;
 import com.micah.goods_example.util.BeanCopyUtils;
 import com.micah.goods_example.util.JwtUtil;
 import com.micah.goods_example.util.R;
+import com.micah.goods_example.util.ResponseResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         User user = getOne(lqw);
         /*查询用户是否存在end*/
         if (user == null) {
-            return R.error("用户不存在");
+            return R.error("用户不存在或密码不对");
         }
 //        LocalUser.setUser(user, user.getUid());
         /*返回带信息的token*/
@@ -53,6 +58,26 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 //        map.put("user", eshopUserVo);
 
         return R.ok(map).put("msg", "登录成功");
+
+    }
+
+    @Override
+    public R reg(RegisterParam registerParam) {
+
+        User user = new User()
+                .setPassword(registerParam.getPassword())
+                .setPhone(registerParam.getPhone())
+                .setUsername(registerParam.getUsername())
+                .setUpdateTime(new Date())
+                .setIsDel(Boolean.FALSE)
+                .setCreateTime(new Date())
+                .setEmail(registerParam.getEmail());
+
+        boolean save = save(user);
+        if (save) {
+            return R.ok("注册成功");
+        }
+        return R.error("注册失败");
 
     }
 }

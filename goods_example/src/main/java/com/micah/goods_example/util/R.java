@@ -8,6 +8,7 @@
 
 package com.micah.goods_example.util;
 
+import com.micah.goods_example.enums.AppHttpCodeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,7 +29,7 @@ public class R extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
 
 	public R() {
-		put("code", 0);
+		put("code", 200);
 		put("msg", "success");
 	}
 	/**
@@ -47,6 +48,9 @@ public class R extends HashMap<String, Object> {
 
 	public static R error(String msg) {
 		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, msg);
+	}
+	public static R init(AppHttpCodeEnum appHttpCodeEnum){
+		return error(appHttpCodeEnum.getCode(), appHttpCodeEnum.getMsg());
 	}
 
 	public static R error(int code, String msg) {
@@ -81,8 +85,6 @@ public class R extends HashMap<String, Object> {
 		return (Integer) super.get("code");
 	}
 
-	public Boolean isSuccess(){
-		return getCode()==0;
-	}
+
 
 }

@@ -11,7 +11,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         this.setFieldValByName("browseTime", new Date(), metaObject);
-        this.setFieldValByName("collectionTime",new Date(),metaObject);
+        this.setFieldValByName("collectionTime", new Date(), metaObject);
     }
 
     @Override

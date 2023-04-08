@@ -10,7 +10,7 @@ spring:
     password: Micahmysqlmima123.
     type: com.alibaba.druid.pool.DruidDataSource
   application:
-    name: example_goods
+    name:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -31,6 +31,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(jwtAuthenticationInterceptor)
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/user/login") //登录
+                .excludePathPatterns("/api/user/register") //注册
                 .excludePathPatterns("/doc.html")//文档地址
         ;
     }
