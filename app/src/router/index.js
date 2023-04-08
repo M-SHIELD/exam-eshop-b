@@ -16,6 +16,11 @@ const routes = [
         component: () => import('@/views/tarbar/type')
     },
     {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/login')
+    },
+    {
         path: '/cart',
         name: 'cart',
         component: () => import('@/views/user/cart')

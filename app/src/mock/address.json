@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "contact": "李四",
+    "phone": "13812345678",
+    "address": "北京市海淀区中关村大街1号",
+    "postalCode": "100080",
+    "default": true
+  },
+  {
+    "id": 2,
+    "contact": "张三",
+    "phone": "13823456789",
+    "address": "北京市海淀区中关村大街2号",
+    "postalCode": "100080",
+    "default": false
+  },
+  {
+    "id": 3,
+    "contact": "王五",
+    "phone": "13834567890",
+    "address": "北京市海淀区中关村大街3号",
+    "postalCode": "100080",
+    "default": false
+  },
+  {
+    "id": 4,
+    "contact": "郭六",
+    "phone": "13845678911",
+    "address": "北京市海淀区中关村大街4号",
+    "postalCode": "100080",
+    "default": false
+  }
+]

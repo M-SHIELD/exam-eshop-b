@@ -12,7 +12,7 @@
           <van-search class="header-search" v-model="search_value" placeholder="请输入搜索关键词" @click="gotosearch"/>
         </van-col>
         <van-col>
-          <van-button class="header-btn-login" size="small" plain hairline type="danger">登录</van-button>
+          <van-button class="header-btn-login" size="small" plain hairline type="danger" @click="$router.push('/login')" v-if="token">登录</van-button>
         </van-col>
       </van-row>
       <!--    滚动的按钮-->
@@ -85,6 +85,7 @@ export default {
   components: {FooterMenu},
   data() {
     return {
+      token: localStorage.getItem('TOKEN')?0:1,
       active: 0,
       search_value: "",
       tabList: [`推荐`, `居家生活`, '宠物生活', '服饰鞋包', '美食酒水', '个护清洁', '母婴亲子', '运动旅行', '数码家电', '严选全球'],

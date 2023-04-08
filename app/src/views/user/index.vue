@@ -89,7 +89,7 @@
 
 
     <van-row class="user-logout">
-      <a href="javascript:void(0)" @click="handleClickLogout">退出登录</a>
+      <a href="javascript:void(0)" @click="handleClickLogout" v-if="token">退出登录</a>
     </van-row>
 
     <FooterMenu :active="3"></FooterMenu>
@@ -102,13 +102,20 @@ import {Toast} from 'vant'
 import FooterMenu from "@/components/footerMenu";
 
 export default {
+  data(){
+    return{
+      token: localStorage.getItem('TOKEN')? 1 : 0
+    }
+  },
   components: {FooterMenu},
   methods: {
     handleOpenOrder: function () {
       this.$router.push({path: '/user/order'})
     },
     handleClickLogout: function () {
+      localStorage.removeItem('TOKEN')
       Toast("退出成功")
+      this.$router.go(0)
     },
     gotoAddress: function () {
       this.$router.push({path: '/address'})

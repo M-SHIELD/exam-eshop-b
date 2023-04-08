@@ -56,6 +56,11 @@ Vue.use(ContactEdit);
 import { Empty } from 'vant';
 Vue.use(Empty);
 
+import { Form } from 'vant';
+import { Field } from 'vant';
+Vue.use(Form);
+Vue.use(Field);
+
 //  全局引入 过滤器
 import '@/utils/filter'
 
