@@ -97,4 +97,29 @@ const router = new VueRouter({
     routes
 })
 
+router.beforeEach((to, from, next) => {
+   const token = localStorage.getItem('TOKEN')
+    if(token){
+        if(to.path !== '/login' && to.path !== '/landing'){
+            next()
+        }else{
+            next('/')
+        }
+    }else{
+        if(to.path === '/user/order'|| to.path === '/user/collect' || to.path === '/user/footPrint' || to.path === '/user/footPrint' || to.path === '/user/wallet'){
+            next('/login')
+
+        }else{
+            next()
+
+        }
+    }
+})
+
+const originalPush = VueRouter.prototype.push
+// 重写原型上的push方法，统一处理错误信息
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
+
 export default router
