@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.micah</groupId>
-    <artifactId>eshop</artifactId>
+    <artifactId>backend</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>eshop</name>
+    <name>backend</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.2.1.Final</version>
+            <version>5.2.5.Final</version>
         </dependency>
 
 
@@ -47,7 +47,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>4.6.3</version>
+            <version>5.8.11</version>
         </dependency>
 
         <dependency>
