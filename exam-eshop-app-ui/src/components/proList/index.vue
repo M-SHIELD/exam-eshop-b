@@ -28,21 +28,24 @@
     <!--    商品展示区域-->
     <div class="proRoom">
       <van-grid gutter="10" :border="false" :column-num="2">
-        <van-grid-item v-for="(item,index) in proList" :key="index">
-          <div @click="toDetail(item.pid)" class="pro">
+        <van-grid-item v-for="(item,index) in productList.list" :key="index">
+          <div @click="toDetail(item.id)" class="pro">
             <div class="propic">
               <img :src="item.picturepath" alt="">
             </div>
-            <div class="proname">{{ item.pname }}</div>
+            <div class="proname">{{ item.name }}</div>
             <div class="proprice">￥{{ item.price }}</div>
           </div>
         </van-grid-item>
       </van-grid>
-
-      <!--      加载更多-->
-      <div @click="more" class="more"> 点击加载更多</div>
-      <div class="footerroom"></div>
+      <van-pagination
+          v-model="productList.currPage"
+          :total-items="productList.totalPage"
+          :show-page-size="3"
+          force-ellipses
+      />
     </div>
+
     <!--底部导航-->
     <FooterMenu :active="-1"></FooterMenu>
   </div>
@@ -50,8 +53,7 @@
 
 <script>
 import FooterMenu from "@/components/footerMenu";
-import {goodsList} from "@/api/goods";
-
+import {getAllProduct} from "@/api/product";
 export default {
   name: "index",
   components: {
@@ -60,8 +62,8 @@ export default {
   created() {
     this.isScore=this.$route.query.isScore
     // console.log(this.isScore)
-
-    this.getData()
+    // this.getData()
+    this.init()
   },
   data() {
     return {
@@ -86,52 +88,8 @@ export default {
           code: 1,
           active:false
         }
-
       ],
-      proList: [
-        {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png'),
-          id:1
-        }, {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        }, {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        }, {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        }, {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        }, {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        }, {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        }, {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        }, {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        }, {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        }
-      ]
+      productList: {}
     }
   },
   methods: {
@@ -148,19 +106,19 @@ export default {
         }
       })
 
-      var param={
-        "isfictitious":this.isScore, //score
-        "descOrAsc":descOrAsc,//s j
-        "orderBy":orderBy,//0 1new 2 price
-        "current":1,//page
-        "size":5,
-        "pid":null,
-        "categoryId":null
-      }
-      goodsList(param).then(e=>{
-        // console.log(e)
-        this.proList=e.data.records
-      })
+      // var param={
+      //   "isfictitious":this.isScore, //score
+      //   "descOrAsc":descOrAsc,//s j
+      //   "orderBy":orderBy,//0 1new 2 price
+      //   "current":1,//page
+      //   "size":5,
+      //   "pid":null,
+      //   "categoryId":null
+      // }
+      // goodsList(param).then(e=>{
+      //   // console.log(e)
+      //   this.proList=e.data.records
+      // })
     },
     toDetail(id){
       this.$router.push('/goods/'+id)
@@ -175,22 +133,28 @@ export default {
       item.active=true
       this.getData()
     },
-    more() {
-      for (let i = 0; i < 10; i++) {
-        this.proList.push({
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png')
-        })
-      }
-
-    },
     transformIconState(item) {
       item.state = item.state === 'asc' ? 'desc' : 'asc'
       this.switchSort(item)
+    },
+    init(){
+      getAllProduct({
+        currPage: 1,
+        isHot: 0,
+        isIntegral: 0,
+        keyWord: "",
+        order: 0,
+        orderType: "",
+        status:1
+      }).then(res => {
+        if(res.code === 200){
+          this.productList =res.page
+          console.log(this.productList)
+        }
+      })
+    }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -254,6 +218,9 @@ export default {
         vertical-align: middle;
       }
     }
+  }
+  .van-pagination{
+    margin-bottom: 50px;
   }
 }
 </style>

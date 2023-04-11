@@ -61,6 +61,9 @@ import { Field } from 'vant';
 Vue.use(Form);
 Vue.use(Field);
 
+import { Pagination } from 'vant';
+Vue.use(Pagination);
+
 //  全局引入 过滤器
 import '@/utils/filter'
 

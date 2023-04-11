@@ -30,15 +30,15 @@
     <van-row class="goods-detail-sales" v-show="seckill!==true">
       <van-col span="16" class="goods-detail-sales-price">
                  <span class="goods-detail-sales-price-promotion">
-                    {{ goods.retail_price|moneyFormat }}
+                    {{ goods.price|moneyFormat }}
                 </span>
         <span class="goods-detail-sales-price-origin">
-                    {{ goods.counter_price|moneyFormat }}
+                    {{ goods.price|moneyFormat }}
                 </span>
 
       </van-col>
       <van-col span="8" class="goods-detail-sales-volume" align="right">
-        销量: {{ goods.sales_volume }} 件
+        销量: {{ goods.sales }}
       </van-col>
     </van-row>
 
@@ -56,7 +56,7 @@
     </van-row>
 
     <van-row class="goods-detail-detail">
-      <div v-html="goods.detail" style="width: 100%;"></div>
+      <div v-html="goods.description" style="width: 100%;"></div>
     </van-row>
 
     <van-row class="goods-detail-faq">
@@ -96,10 +96,10 @@
 </template>
 
 <script>
-import {goodsDetail} from '@/api/goods'
+// import {goodsDetail} from '@/api/goods'
 import {mapMutations, mapState} from "vuex"
 import {Toast} from "vant"
-
+import {getdetails} from "@/api/product";
 export default {
   name: "detail",
   data() {
@@ -114,13 +114,13 @@ export default {
         picture: 'https://www.ake1.com/mkoss/2022/02/27/c49cce16.png',//商品头图
         name: '测试商品',//名称
         subtitle: '标题',//副标题
-        retail_price: 66,//实际价格
+        price: 66,//实际价格
         counter_price: 88,//原价格
-        sales_volume: 100,//销量
+        sales: 100,//销量
         attribute_list: [{
           name: '颜色', value: '白'
         }],//规格参数
-        detail: '我是详情',//商品详情
+        description: '我是详情',//商品详情
         sku: {
           // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
           // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
@@ -203,7 +203,7 @@ export default {
     let goods = {
       id: this.goodsId,
       title: this.goods.name,
-      price: this.goods.retail_price,
+      price: this.goods.price,
       thumb: this.goods.pic_urls[0],
       num: 1,
       desc: this.goods.subtitle,
@@ -217,12 +217,17 @@ export default {
       this.goods.isCollect = !this.goods.isCollect
     },
     initData() {
-      goodsDetail(this.goodsId).then(response => {
-        if (response.data) {
-          this.goods = response.data
-          this.goods.picture = response.data.pic_url
-        } else {
-          this.goods = {}
+      // goodsDetail(this.goodsId).then(response => {
+      //   if (response.data) {
+      //     this.goods = response.data
+      //     this.goods.picture = response.data.pic_url
+      //   } else {
+      //     this.goods = {}
+      //   }
+      // })
+      getdetails(this.goodsId).then(res => {
+        if(res.code === 200){
+          this.goods = res.data
         }
       })
     },
