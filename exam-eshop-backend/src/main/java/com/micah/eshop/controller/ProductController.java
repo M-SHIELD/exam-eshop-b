@@ -3,6 +3,7 @@ package com.micah.eshop.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.micah.eshop.entity.model.ProductParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +38,7 @@ public class ProductController {
 
     @PostMapping("/getAllProduct")
     @ApiOperation("获取商品列表")
-    public R list(@RequestBody Map<String, Object> params) {
+    public R list(@RequestBody ProductParam params) {
         PageUtils page = productService.queryPage(params);
 
         return R.ok().put("page", page);

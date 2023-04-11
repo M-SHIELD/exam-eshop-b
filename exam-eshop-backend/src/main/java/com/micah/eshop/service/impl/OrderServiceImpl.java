@@ -2,9 +2,11 @@ package com.micah.eshop.service.impl;
 
 
 import com.micah.eshop.entity.OrderItemEntity;
+import com.micah.eshop.entity.ShopEntity;
 import com.micah.eshop.entity.model.OrderParam;
 import com.micah.eshop.entity.vo.OrderDto;
 import com.micah.eshop.service.OrderItemService;
+import com.micah.eshop.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     @Autowired
     OrderItemService orderItemService;
+    @Autowired
+    ShopService shopService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -73,8 +77,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             orderDto.setUpdateTime(e.getUpdateTime());
             orderDto.setIsDel(e.getIsDel());
 
+            //插入店铺名称
 
-            //查询插入
+            ShopEntity shopById = shopService.getById(e.getShopId());
+            orderDto.setShopName(shopById.getShopName());
+
+            //查询插入商品详情
 
             QueryWrapper<OrderItemEntity> orderItemEntityQueryWrapper = new QueryWrapper<>();
             orderItemEntityQueryWrapper = orderItemEntityQueryWrapper.eq("order_id", e.getId()).eq("is_del", 0);

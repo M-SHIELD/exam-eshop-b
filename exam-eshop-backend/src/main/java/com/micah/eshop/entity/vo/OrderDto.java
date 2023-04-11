@@ -26,6 +26,11 @@ public class OrderDto {
     @ApiModelProperty(value = "用户id")
     private int uid;
     /**
+     * 店铺id
+     */
+    @ApiModelProperty(value = "店铺名称")
+    private String shopName;
+    /**
      * 订单总金额
      */
     @ApiModelProperty(value = "订单总金额")

@@ -43,6 +43,11 @@ public class OrderEntity implements Serializable {
     @ApiModelProperty(value = "用户ID")
     private Integer uid;
     /**
+     * 店铺id
+     */
+    @ApiModelProperty(value = "店铺ID")
+    private Integer shopId;
+    /**
      * 订单总金额
      */
     @ApiModelProperty(value = "订单总金额")

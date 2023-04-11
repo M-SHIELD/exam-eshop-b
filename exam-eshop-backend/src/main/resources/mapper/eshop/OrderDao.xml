@@ -8,6 +8,7 @@
         <result property="id" column="id"/>
         <result property="orderNo" column="order_no"/>
         <result property="uid" column="uid"/>
+        <result property="shopId" column="shop_id"/>
         <result property="totalAmount" column="total_amount"/>
         <result property="payAmount" column="pay_amount"/>
         <result property="payType" column="pay_type"/>
