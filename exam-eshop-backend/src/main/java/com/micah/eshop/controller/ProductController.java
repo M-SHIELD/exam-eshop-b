@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 import com.micah.eshop.entity.model.ProductParam;
+import com.micah.eshop.entity.vo.ProductDto;
+import com.micah.eshop.util.module.GetUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +20,8 @@ import com.micah.eshop.entity.ProductEntity;
 import com.micah.eshop.service.ProductService;
 import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.util.R;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -44,6 +48,16 @@ public class ProductController {
         return R.ok().put("page", page);
     }
 
+
+
+    @PostMapping("/details/{id}")
+    @ApiOperation("获取商品详情")
+    public R details(@PathVariable String id, HttpServletRequest request) {
+        Long uid = GetUserInfo.getUid(request);
+        ProductDto productDto = productService.details(id,uid);
+
+        return R.ok().put("data", productDto);
+    }
 
 //    /**
 //     * 列表
