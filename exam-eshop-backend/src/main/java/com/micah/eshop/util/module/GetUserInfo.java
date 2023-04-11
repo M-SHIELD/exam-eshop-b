@@ -32,7 +32,7 @@ public class GetUserInfo {
         try {
             suid = String.valueOf(jsonObject.get("uid"));
         } catch (NullPointerException nullPointerException) {
-            throw new RuntimeException("解析token失败");
+            throw new RuntimeException("解析token失败,可能是token已过期或错误");
         }
 
 

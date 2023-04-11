@@ -1,10 +1,9 @@
 package com.micah.eshop.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.micah.eshop.entity.model.ProductParam;
 import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.entity.ProductEntity;
-
-import java.util.Map;
 
 /**
  * 商品信息表
@@ -15,6 +14,6 @@ import java.util.Map;
  */
 public interface ProductService extends IService<ProductEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
+    PageUtils queryPage(ProductParam params);
 }
 
