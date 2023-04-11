@@ -106,7 +106,7 @@ router.beforeEach((to, from, next) => {
             next('/')
         }
     }else{
-        if(to.path === '/user/order'|| to.path === '/user/collect' || to.path === '/user/footPrint' || to.path === '/user/footPrint' || to.path === '/user/wallet'){
+        if(to.path === '/user/order'|| to.path === '/user/collect' || to.path === '/user/footPrint' || to.path === '/user/footPrint' || to.path === '/user/wallet' || to.path === '/address'){
             next('/login')
 
         }else{
