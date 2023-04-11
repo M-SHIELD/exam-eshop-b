@@ -121,7 +121,8 @@ public class ProductEntity implements Serializable {
      */
     @ApiModelProperty(value = "所需积分")
     @Schema(description = "所需积分")
-    private BigDecimal integral;    @ApiModelProperty(value = "店铺id")
+    private BigDecimal integral;
+    @ApiModelProperty(value = "店铺id")
     @Schema(description = "店铺id")
     private BigDecimal shopId;
 }

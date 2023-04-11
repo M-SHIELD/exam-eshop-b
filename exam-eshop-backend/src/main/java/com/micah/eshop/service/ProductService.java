@@ -2,6 +2,7 @@ package com.micah.eshop.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.micah.eshop.entity.model.ProductParam;
+import com.micah.eshop.entity.vo.ProductDto;
 import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.entity.ProductEntity;
 
@@ -15,5 +16,7 @@ import com.micah.eshop.entity.ProductEntity;
 public interface ProductService extends IService<ProductEntity> {
 
     PageUtils queryPage(ProductParam params);
+
+    ProductDto details(String id, Long uid);
 }
 
