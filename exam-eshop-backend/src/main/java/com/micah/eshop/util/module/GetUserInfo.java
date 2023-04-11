@@ -28,7 +28,14 @@ public class GetUserInfo {
         String sub = JwtUtil.getSub(token);
         JSONObject jsonObject = JSON.parseObject(sub);
         // TODO 未登录添加购物车会报空指针异常
-        String suid = String.valueOf(jsonObject.get("uid"));
+        String suid = "";
+        try {
+            suid = String.valueOf(jsonObject.get("uid"));
+        } catch (NullPointerException nullPointerException) {
+            throw new RuntimeException("解析token失败");
+        }
+
+
         return Long.valueOf(suid);
     }
 

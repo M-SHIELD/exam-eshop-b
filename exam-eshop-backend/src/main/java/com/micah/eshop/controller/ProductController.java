@@ -19,7 +19,6 @@ import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.util.R;
 
 
-
 /**
  * 商品信息表
  *
@@ -36,60 +35,69 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    /**
-     * 列表
-     */
-    @GetMapping("/list")
-    @ApiOperation("商品信息表:列表:自定义参数")
-    public R list(@RequestParam Map<String, Object> params){
+    @PostMapping("/getAllProduct")
+    @ApiOperation("获取商品列表")
+    public R list(@RequestBody Map<String, Object> params) {
         PageUtils page = productService.queryPage(params);
 
         return R.ok().put("page", page);
     }
 
 
-    /**
-     * 信息
-     */
-    @ApiOperation("商品信息表:信息:id")
-    @GetMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id){
-		ProductEntity product = productService.getById(id);
-
-        return R.ok().put("product", product);
-    }
-
-    /**
-     * 保存
-     */
-    @PostMapping("/save")
-    @ApiOperation("商品信息表:保存")
-    public R save(@RequestBody ProductEntity product){
-		productService.save(product);
-
-        return R.ok();
-    }
-
-    /**
-     * 修改
-     */
-    @PostMapping("/update")
-    @ApiOperation("商品信息表:更新")
-    public R update(@RequestBody ProductEntity product){
-		productService.updateById(product);
-
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @PostMapping("/delete")
-    @ApiOperation("商品信息表:删除")
-    public R delete(@RequestBody Long[] ids){
-		productService.removeByIds(Arrays.asList(ids));
-
-        return R.ok();
-    }
+//    /**
+//     * 列表
+//     */
+//    @GetMapping("/list")
+//    @ApiOperation("商品信息表:列表:自定义参数")
+//    public R list(@RequestParam Map<String, Object> params){
+//        PageUtils page = productService.queryPage(params);
+//
+//        return R.ok().put("page", page);
+//    }
+//
+//
+//    /**
+//     * 信息
+//     */
+//    @ApiOperation("商品信息表:信息:id")
+//    @GetMapping("/info/{id}")
+//    public R info(@PathVariable("id") Long id){
+//		ProductEntity product = productService.getById(id);
+//
+//        return R.ok().put("product", product);
+//    }
+//
+//    /**
+//     * 保存
+//     */
+//    @PostMapping("/save")
+//    @ApiOperation("商品信息表:保存")
+//    public R save(@RequestBody ProductEntity product){
+//		productService.save(product);
+//
+//        return R.ok();
+//    }
+//
+//    /**
+//     * 修改
+//     */
+//    @PostMapping("/update")
+//    @ApiOperation("商品信息表:更新")
+//    public R update(@RequestBody ProductEntity product){
+//		productService.updateById(product);
+//
+//        return R.ok();
+//    }
+//
+//    /**
+//     * 删除
+//     */
+//    @PostMapping("/delete")
+//    @ApiOperation("商品信息表:删除")
+//    public R delete(@RequestBody Long[] ids){
+//		productService.removeByIds(Arrays.asList(ids));
+//
+//        return R.ok();
+//    }
 
 }
