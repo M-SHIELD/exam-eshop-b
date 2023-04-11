@@ -62,11 +62,14 @@
 </template>
 
 <script>
+import {getallorpart} from "@/api/allorpart";
+
 export default {
   props: {
     orderList: Array
   },
   mounted() {
+    this.init()
     console.log(this.orderList)
   },
   watch: {
@@ -75,6 +78,20 @@ export default {
     }
   },
   methods: {
+    init(){
+      getallorpart({
+        ddid: 0,
+        isEnd: 0,
+        maijiaid: 0,
+        number: 0,
+        pid: 0,
+        state: 0,
+        地址id: 0,
+        时间: ""
+      }).then(res => {
+        console.log(res)
+      })
+    },
     onClickPayment() {
     },
     formatOrderStatus(status) {

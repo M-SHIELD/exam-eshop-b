@@ -8,37 +8,36 @@
     />
     <van-tabs class="order-category" v-model="activeName" @click="onClickOrder" sticky>
       <van-tab title="全部" :name="0">
-        <OrderList :orderList="orderList"></OrderList>
+        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
       </van-tab>
       <van-tab title="待付款" :name="1">
-        <OrderList :orderList="orderList"></OrderList>
+        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
       </van-tab>
       <van-tab title="待发货" :name="2">
-        <OrderList :orderList="orderList"></OrderList>
+        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
       </van-tab>
       <van-tab title="待收货" :name="3">
-        <OrderList :orderList="orderList"></OrderList>
+        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
       </van-tab>
       <van-tab title="待评价" :name="4">
-        <OrderList :orderList="orderList"></OrderList>
+        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
       </van-tab>
       <van-tab title="已完成" :name="5">
-        <OrderList :orderList="orderList"></OrderList>
+        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
       </van-tab>
     </van-tabs>
   </div>
 </template>
 <script>
-import OrderList from './components/OrderList'
-import {getOrderList} from '@/api/order'
-
+import OrderList from '@/components/orderlist'
+import {orderList} from "@/api/mockaddress/address";
 export default {
-  name: "index",
+  name: "order",
   data() {
     return {
       //activeName: this.$route.params.active,
       activeName: this.$route.params.active,
-      orderList: []
+      orderList: [],
     };
   },
   mounted() {
@@ -59,27 +58,35 @@ export default {
     onClickOrder() {
       this.getOrderList()
     },
-    getOrderList() {
-      this.orderList = []
-      if (this.activeName===0){
-        var data={
-          "maijiaid": 2
-        }
-      }else{
-        var data={
-          "maijiaid": 2,
-          "state": this.activeName
-        }
+    // getOrderList() {
+    //   this.orderList = []
+    //   if (this.activeName === 0) {
+    //     var data = {
+    //       "maijiaid": 2
+    //     }
+    //   } else {
+    //     var data = {
+    //       "maijiaid": 2,
+    //       "state": this.activeName
+    //     }
+    //   }
+    //
+    //     getOrderList(data).then(response => {
+    //       if (response.data && response.data.length > 0) {
+    //         console.log(response.data)
+    //           this.orderList = response.data
+    //       }
+    //     })
+    //   },
+      getOrderList(){
+        orderList().then(res => {
+          if(res.code == 200){
+            this.orderList = res.data
+            // console.log(this.orderList)
+          }
+        })
       }
-
-      getOrderList(data).then(response => {
-        if (response.data && response.data.length > 0) {
-          console.log(response.data)
-            this.orderList = response.data
-        }
-      })
     }
-  }
 }
 </script>
 
