@@ -7,30 +7,42 @@
         @click-left="onClickLeft"
     />
     <van-tabs class="order-category" v-model="activeName" @click="onClickOrder" sticky>
-      <van-tab title="全部" :name="0">
-        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
+      <van-tab title="全部" :name="-1">
+        <OrderList v-for="item in orderList" :key="item.id" :orderList="item.products"></OrderList>
       </van-tab>
-      <van-tab title="待付款" :name="1">
-        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
+      <van-tab title="待付款" :name="0">
+        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+      </van-tab>
+      <van-tab title="已付款" :name="1">
+        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
       </van-tab>
       <van-tab title="待发货" :name="2">
-        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
+        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
       </van-tab>
       <van-tab title="待收货" :name="3">
-        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
+        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
       </van-tab>
       <van-tab title="待评价" :name="4">
-        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
+        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
       </van-tab>
       <van-tab title="已完成" :name="5">
-        <OrderList v-for="item in orderList.orders" :key="item.id" :orderList="item.products" :status="item.status"></OrderList>
+        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+      </van-tab>
+      <van-tab title="已取消" :name="6">
+        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+      </van-tab>
+      <van-tab title="已退款" :name="7">
+        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+      </van-tab>
+      <van-tab title="已删除" :name="8">
+        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
       </van-tab>
     </van-tabs>
   </div>
 </template>
 <script>
 import OrderList from '@/components/orderlist'
-import {orderList} from "@/api/mockaddress/address";
+import {postorderlist} from "@/api/orderlist";
 export default {
   name: "order",
   data() {
@@ -79,10 +91,13 @@ export default {
     //     })
     //   },
       getOrderList(){
-        orderList().then(res => {
+        postorderlist({
+          status: this.activeName,
+          uid: 0
+        }).then(res => {
           if(res.code == 200){
             this.orderList = res.data
-            // console.log(this.orderList)
+            console.log(res.data)
           }
         })
       }
