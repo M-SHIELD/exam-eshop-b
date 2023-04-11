@@ -5,3 +5,10 @@ export const addressList= () =>
         url: '/address',
         method: 'get'
     })
+
+export const orderList= () =>
+    mockrequest({
+        url: '/order',
+        method: 'get'
+    })
+
