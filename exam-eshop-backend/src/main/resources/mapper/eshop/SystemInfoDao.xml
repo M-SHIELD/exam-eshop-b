@@ -13,5 +13,7 @@
         <result property="isDel" column="is_del"/>
     </resultMap>
 
-
+    <select id="getSystemInfoDao" resultMap="systemInfoMap">
+        select * from e_system_info
+    </select>
 </mapper>

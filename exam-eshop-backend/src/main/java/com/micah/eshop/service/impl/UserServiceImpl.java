@@ -35,7 +35,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
         IPage<UserEntity> iPage = new Page<>(1, 10);
         IPage<UserEntity> page = this.page(
                 iPage,
-                new QueryWrapper<UserEntity>()
+                new QueryWrapper<>()
         );
         return new PageUtils(page);
     }
@@ -85,6 +85,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
                 .setCreateTime(new Date())
                 .setAvator("https://th.bing.com/th/id/R.629105f8e48009c659b8a4048adef1cc?rik=0LttQdHqnl3ang&riu=http%3a%2f%2fimg.wxcha.com%2ffile%2f202005%2f19%2fdeb4d01b77.jpg&ehk=6DKzNVR5O4Oa%2fZxvhM9ea0W9jpJVSfAZVW4mPemcz3k%3d&risl=&pid=ImgRaw&r=0")
                 .setEmail(registerParam.getEmail());
+
 
         boolean save = save(user);
         if (save) {
