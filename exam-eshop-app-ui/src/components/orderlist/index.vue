@@ -32,11 +32,8 @@ export default {
   name: "orderlist",
   props: {
     orderList: Array,
-    status: Number
   },
   mounted() {
-    console.log(this.orderList)
-    console.log(this.status)
   },
   // watch: {
   //   deep: true,
