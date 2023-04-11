@@ -1,9 +1,12 @@
 package com.micah.eshop.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.micah.eshop.entity.model.OrderParam;
+import com.micah.eshop.entity.vo.OrderDto;
 import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.entity.OrderEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +19,7 @@ import java.util.Map;
 public interface OrderService extends IService<OrderEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<OrderDto> getAllOrders(OrderParam params);
 }
 

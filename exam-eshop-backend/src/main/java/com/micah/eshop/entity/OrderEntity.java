@@ -58,9 +58,9 @@ public class OrderEntity implements Serializable {
     @ApiModelProperty(value = "支付方式，1：支付宝，2：微信")
     private Integer payType;
     /**
-     * 订单状态，0：待支付，1：已支付，2：已发货，3：已收货，4：已完成，5：已取消，6：已退款，7：已删除
+     * 订单状态，0：待支付，1：已支付，2:待发货 3：已发货，4：已收货，5：已完成，6：已取消，7：已退款，8：已删除
      */
-    @ApiModelProperty(value = "订单状态，0：待支付，1：已支付，2：已发货，3：已收货，4：已完成，5：已取消，6：已退款，7：已删除")
+    @ApiModelProperty(value = "订单状态，0：待支付，1：已支付，2:待发货 3：已发货，4：已收货，5：已完成，6：已取消，7：已退款，8：已删除")
     private Integer status;
     /**
      * 订单创建时间
