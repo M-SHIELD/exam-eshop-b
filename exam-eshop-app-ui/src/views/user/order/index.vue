@@ -8,34 +8,34 @@
     />
     <van-tabs class="order-category" v-model="activeName" @click="onClickOrder" sticky>
       <van-tab title="全部" :name="-1">
-        <OrderList v-for="item in orderList" :key="item.id" :orderList="item.products"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
       <van-tab title="待付款" :name="0">
-        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
       <van-tab title="已付款" :name="1">
-        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
       <van-tab title="待发货" :name="2">
-        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
       <van-tab title="待收货" :name="3">
-        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
       <van-tab title="待评价" :name="4">
-        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
       <van-tab title="已完成" :name="5">
-        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
       <van-tab title="已取消" :name="6">
-        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
       <van-tab title="已退款" :name="7">
-        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
       <van-tab title="已删除" :name="8">
-        <OrderList v-for="item in orderList" :key="item.id"></OrderList>
+        <OrderList :orderList="orderList"></OrderList>
       </van-tab>
     </van-tabs>
   </div>
@@ -97,7 +97,6 @@ export default {
         }).then(res => {
           if(res.code == 200){
             this.orderList = res.data
-            console.log(res.data)
           }
         })
       }
