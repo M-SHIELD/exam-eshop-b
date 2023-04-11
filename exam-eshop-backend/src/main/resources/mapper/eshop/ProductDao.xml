@@ -8,8 +8,11 @@
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="description" column="description"/>
+        <result property="image" column="image"/>
+        <result property="sliderImage" column="slider_image"/>
         <result property="categoryId" column="category_id"/>
         <result property="price" column="price"/>
+        <result property="integral" column="integral"/>
         <result property="stock" column="stock"/>
         <result property="sales" column="sales"/>
         <result property="isIntegral" column="is_integral"/>
@@ -17,6 +20,10 @@
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="isDel" column="is_del"/>
+        <result property="isShow" column="is_show"/>
+        <result property="isHot" column="is_hot"/>
+        <result property="shopId" column="shop_id"/>
+
     </resultMap>
 
 

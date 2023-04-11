@@ -14,6 +14,8 @@ import com.micah.eshop.entity.ProductEntity;
 import com.micah.eshop.service.ProductService;
 import org.springframework.util.StringUtils;
 
+import java.util.Objects;
+
 
 @Service("productService")
 public class ProductServiceImpl extends ServiceImpl<ProductDao, ProductEntity> implements ProductService {
@@ -24,16 +26,20 @@ public class ProductServiceImpl extends ServiceImpl<ProductDao, ProductEntity> i
         QueryWrapper<ProductEntity> queryWrapper = new QueryWrapper<>();
 
         queryWrapper = queryWrapper
-                .like(StringUtils.isEmpty(params.getKeyWord()), "", params.getKeyWord())
-                .orderBy(params.getOrder()==0,params.getOrderType()=="asc","")
-                .orderBy(params.getOrder()==1,params.getOrderType()=="asc","price")
-                .orderBy(params.getOrder()==2,params.getOrderType()=="asc","create_time");
+                .eq("is_show",1)
+                .eq("is_integral",params.getIsIntegral())
+                .eq("status",params.getStatus())
+                .eq("is_hot",params.getIsHot())
+                .like(!StringUtils.isEmpty(params.getKeyWord()), "name", params.getKeyWord())
+                .orderBy(params.getOrder()==0, Objects.equals(params.getOrderType(), "asc"),"id")
+                .orderBy(params.getOrder()==1, Objects.equals(params.getOrderType(), "asc"),"price")
+                .orderBy(params.getOrder()==2, Objects.equals(params.getOrderType(), "asc"),"create_time");
 
 
-        IPage<ProductEntity> iPage = new Page<>(1, 10);
+        IPage<ProductEntity> iPage = new Page<>(params.getCurrPage(), 10);
         IPage<ProductEntity> page = this.page(
                 iPage,
-                new QueryWrapper<ProductEntity>()
+                queryWrapper
         );
         return new PageUtils(page);
     }
