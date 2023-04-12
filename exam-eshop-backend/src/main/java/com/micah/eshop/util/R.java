@@ -14,13 +14,14 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.apache.http.HttpStatus;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 返回数据
  *
- * @author Mark sunlightcs@gmail.com
+ * @author Micah mxmicah@qq.com
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -31,6 +32,8 @@ public class R extends HashMap<String, Object> {
     public R() {
         put("code", 200);
         put("msg", "success");
+        put("time", new Date());
+        put("success", Boolean.TRUE);
     }
 
     /**
@@ -70,12 +73,14 @@ public class R extends HashMap<String, Object> {
         R r = new R();
         r.put("code", code);
         r.put("msg", msg);
+        r.put("success", Boolean.FALSE);
         return r;
     }
 
     public static R ok(String msg) {
         R r = new R();
         r.put("msg", msg);
+        r.put("success", Boolean.TRUE);
         return r;
     }
 
