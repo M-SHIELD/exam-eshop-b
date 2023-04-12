@@ -14,6 +14,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.apache.http.HttpStatus;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,11 +29,11 @@ import java.util.Map;
 @Accessors(chain = true)
 public class R extends HashMap<String, Object> {
     private static final long serialVersionUID = 1L;
-
+    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public R() {
         put("code", 200);
         put("msg", "success");
-        put("time", new Date());
+        put("time", simpleDateFormat.format(new Date()));
         put("success", Boolean.TRUE);
     }
 
