@@ -1,6 +1,7 @@
 package com.micah.eshop.config;
 
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,8 +16,10 @@ import org.springframework.context.annotation.Configuration;
 public class MybatisPlusConfig {
 
     @Bean
-    public PaginationInterceptor paginationInterceptor(){
-        return new PaginationInterceptor();
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        //定义拦截
+        MybatisPlusInterceptor myInterceptor = new MybatisPlusInterceptor();
+        myInterceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+        return myInterceptor;
     }
-
 }
