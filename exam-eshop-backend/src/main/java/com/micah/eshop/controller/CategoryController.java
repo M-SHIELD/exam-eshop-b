@@ -41,7 +41,11 @@ public class CategoryController {
     @GetMapping("/select")
     @ApiOperation("商品分类表:列表:获取所有分类")
     public R select() {
-        return R.ok().put("data",categoryService.getAllCategory() );
+
+
+        return R.ok().put("data", categoryService.getAllCategory());
+
+
     }
 
 //    /**
