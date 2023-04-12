@@ -133,7 +133,7 @@ export default {
         isIntegral: 0,
         keyWord: this.value,
         order: 0,
-        orderType: "",
+        orderType: "asc",
         status: 1
       }).then(res => {
         if(res.code === 200){

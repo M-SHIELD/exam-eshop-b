@@ -11,8 +11,8 @@
     <van-swipe class="goods-detail-swipe"
                :autoplay="3000"
     >
-      <van-swipe-item v-for="(pic_url,index) in goods.pic_urls">
-        <van-image width="100%" height="280" :src="pic_url"/>
+      <van-swipe-item v-for="(url,index) in 1" :key="index">
+        <van-image width="100%" height="280" :src="goods.sliderImage"/>
       </van-swipe-item>
     </van-swipe>
 
@@ -48,7 +48,7 @@
     <van-row class="goods-detail-attribute">
       <van-cell-group title="商品参数">
         <van-cell
-            v-for="attribute in goods.attribute_list"
+            v-for="attribute in attribute_list"
             :title="attribute.name"
             :value="attribute.value"
         />
@@ -78,12 +78,10 @@
     <van-action-sheet v-model="showSku" title="标题">
       <van-sku
           v-model="showSku"
-          :sku="goods.sku"
+          :sku="sku"
           :goods="goods"
           :goods-id="goodsId"
           :quota="quota"
-          ref="sku"
-
       >
         <template #sku-actions="props">
           <div class="van-sku-actions">
@@ -106,73 +104,91 @@ export default {
     return {
       seckill: this.$route.params.seckill, // 页面传值：是否秒杀商品
       goodsId: this.$route.params.goodsId, // 页面传值：商品ID
-      goods: {
-        isCollect: false,
-        // 默认商品 sku 缩略图
-        pic_urls: ['https://www.ake1.com/mkoss/2022/02/27/940dd6c1.png',
-          'https://www.ake1.com/mkoss/2022/02/27/c49cce16.png'],//轮播图列表
-        picture: 'https://www.ake1.com/mkoss/2022/02/27/c49cce16.png',//商品头图
-        name: '测试商品',//名称
-        subtitle: '标题',//副标题
-        price: 66,//实际价格
-        counter_price: 88,//原价格
-        sales: 100,//销量
-        attribute_list: [{
-          name: '颜色', value: '白'
-        }],//规格参数
-        description: '我是详情',//商品详情
-        sku: {
-          // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
-          // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
-          tree: [
-            {
-              k: '颜色', // skuKeyName：规格类目名称
-              k_s: 's1', // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
-              v: [
-                {
-                  id: '1', // skuValueId：规格值 id
-                  name: '红色', // skuValueName：规格值名称
-                  imgUrl: 'https://www.ake1.com/mkoss/2022/02/27/dbd8f3db.png', // 规格类目图片，只有第一个规格类目可以定义图片
-                  previewImgUrl: 'https://www.ake1.com/mkoss/2022/02/27/dbd8f3db.png', // 用于预览显示的规格类目图片
-                },
-                {
-                  id: '2',
-                  name: '蓝色',
-                  imgUrl: 'https://www.ake1.com/mkoss/2022/02/27/09e8bcb8.png',
-                  previewImgUrl: 'https://www.ake1.com/mkoss/2022/02/27/09e8bcb8.png',
-                }
-              ],
-              largeImageMode: true, //  是否展示大图模式
-            }
-          ],
-          // 所有 sku 的组合列表，比如红色、M 码为一个 sku 组合，红色、S 码为另一个组合
-          list: [
-            {
-              id: 1, // skuId  2259
-              s1: '1', // 规格类目 k_s 为 s1 的对应规格值 id
-              s2: '2', // 规格类目 k_s 为 s2 的对应规格值 id
-              price: 100, // 价格（单位分）
-              stock_num: 110 // 当前 sku 组合对应的库存
-            }
-          ],
-          price: '1.00', // 默认价格（单位元）
-          stock_num: 227, // 商品总库存
-          collection_id: 2261, // 无规格商品 skuId 取 collection_id，否则取所选 sku 组合对应的 id
-          none_sku: false, // 是否无规格商品
-          messages: [
-            {
-              // 商品留言
-              datetime: '0', // 留言类型为 time 时，是否含日期。'1' 表示包含
-              multiple: '0', // 留言类型为 text 时，是否多行文本。'1' 表示多行
-              name: '留言', // 留言名称
-              type: 'text', // 留言类型，可选: id_no（身份证）, text, tel, date, time, email
-              required: '1', // 是否必填 '1' 表示必填
-              placeholder: '', // 可选值，占位文本
-              extraDesc: ''  // 可选值，附加描述文案
-            }
-          ],
-          hide_stock: false // 是否隐藏剩余库存
-        }
+      attribute_list:[
+        {name:'红色',value:'XL'},
+        {name:'蓝色',value:'L'}
+      ],
+      goods: {},
+      sku: {
+        // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
+        // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
+        tree: [
+          {
+            k: '颜色', // skuKeyName：规格类目名称
+            k_s: 's1', // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+            v: [
+              {
+                id: '1', // skuValueId：规格值 id
+                name: '红色', // skuValueName：规格值名称
+              },
+              {
+                id: '2',
+                name: '蓝色',
+              }
+            ],
+          },
+          {
+            k: '尺寸', // skuKeyName：规格类目名称
+            k_s: 's2', // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+            v: [
+              {
+                id: '3', // skuValueId：规格值 id
+                name: 'XL', // skuValueName：规格值名称
+              },
+              {
+                id: '4',
+                name: 'L',
+              }
+            ],
+          }
+        ],
+        // 所有 sku 的组合列表，比如红色、M 码为一个 sku 组合，红色、S 码为另一个组合
+        list: [
+          {
+            id: 2259, // skuId
+            s1: '1', // 规格类目 k_s 为 s1 的对应规格值 id
+            s2: '3', // 规格类目 k_s 为 s2 的对应规格值 id
+            price: 999900, // 价格（单位分）
+            stock_num: 13 // 当前 sku 组合对应的库存
+          },
+          {
+            id: 2260, // skuId
+            s1: '1', // 规格类目 k_s 为 s1 的对应规格值 id
+            s2: '4', // 规格类目 k_s 为 s2 的对应规格值 id
+            price: 999900, // 价格（单位分）
+            stock_num: 81 // 当前 sku 组合对应的库存
+          },
+          {
+            id: 2261, // skuId
+            s1: '2', // 规格类目 k_s 为 s1 的对应规格值 id
+            s2: '3', // 规格类目 k_s 为 s2 的对应规格值 id
+            price: 999900, // 价格（单位分）
+            stock_num: 187 // 当前 sku 组合对应的库存
+          },{
+            id: 2262, // skuId
+            s1: '2', // 规格类目 k_s 为 s1 的对应规格值 id
+            s2: '4', // 规格类目 k_s 为 s2 的对应规格值 id
+            price: 999900, // 价格（单位分）
+            stock_num: 134 // 当前 sku 组合对应的库存
+          }
+        ],
+        price: '6999', // 默认价格（单位元）
+        stock_num: 227, // 商品总库存
+        collection_id: 2261, // 无规格商品 skuId 取 collection_id，否则取所选 sku 组合对应的 id
+        none_sku: false, // 是否无规格商品
+        messages: [
+          {
+            // 商品留言
+            datetime: '0', // 留言类型为 time 时，是否含日期。'1' 表示包含
+            multiple: '0', // 留言类型为 text 时，是否多行文本。'1' 表示多行
+            name: '留言', // 留言名称
+            type: 'text', // 留言类型，可选: id_no（身份证）, text, tel, date, time, email
+            required: '1', // 是否必填 '1' 表示必填
+            placeholder: '', // 可选值，占位文本
+            extraDesc: ''  // 可选值，附加描述文案
+          }
+        ],
+        hide_stock: false // 是否隐藏剩余库存
       },
       quota: 1, // 限购件数
       showSku: false,
@@ -204,12 +220,11 @@ export default {
       id: this.goodsId,
       title: this.goods.name,
       price: this.goods.price,
-      thumb: this.goods.pic_urls[0],
+      thumb: this.goods.sliderImage,
       num: 1,
       desc: this.goods.subtitle,
     }
     this.addFooterPrint(goods)
-
   },
   methods: {
     ...mapMutations(['ADD_TO_CART','addFooterPrint']),
@@ -217,24 +232,33 @@ export default {
       this.goods.isCollect = !this.goods.isCollect
     },
     initData() {
-      // goodsDetail(this.goodsId).then(response => {
-      //   if (response.data) {
-      //     this.goods = response.data
-      //     this.goods.picture = response.data.pic_url
-      //   } else {
-      //     this.goods = {}
-      //   }
-      // })
       getdetails(this.goodsId).then(res => {
-        if(res.code === 200){
-          this.goods = res.data
-        }
+        if (res.code === 200) {
+              this.goods = res.data
+              console.log(res.data)
+              this.goods.picture = res.data.image
+        } else {
+              this.goods = {}
+            }
       })
     },
     onClickLeft() {
       this.$router.go(-1)
     },
     showSkuClicked() {
+      let arr = []
+      this.goods.skus.forEach(item => {
+        arr .push( item.specification.substr(0,2))
+        arr .push( item.specification.substr(3,2))
+        arr .push( item.specification.substr(6,2))
+        arr .push( item.specification.substr(9,2))
+        this.sku.tree[0].k = arr[0]
+        this.sku.tree[1].k = arr[2]
+        this.sku.tree[0].v[0].name = arr[1]
+        this.sku.tree[0].v[1].name = arr[5]
+        this.sku.tree[1].v[0].name = arr[3]
+        this.sku.tree[1].v[1].name = arr[7]
+      })
       this.showSku = true
     },
     onBuyClicked() {
@@ -280,9 +304,9 @@ export default {
     onAddCartClicked() {
       let goods = {
         id: this.goodsId,
-        title: this.goods.name,
-        price: this.goods.retail_price,
-        thumb: this.goods.pic_urls[0],
+        title: this.goods,
+        price: this.goods.price,
+        thumb: this.goods.sliderImage,
         num: 1,
         desc: this.goods.subtitle,
       }

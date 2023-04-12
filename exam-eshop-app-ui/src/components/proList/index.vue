@@ -31,7 +31,7 @@
         <van-grid-item v-for="(item,index) in productList.list" :key="index">
           <div @click="toDetail(item.id)" class="pro">
             <div class="propic">
-              <img :src="item.picturepath" alt="">
+              <img :src="item.image" alt="">
             </div>
             <div class="proname">{{ item.name }}</div>
             <div class="proprice">￥{{ item.price }}</div>
@@ -62,7 +62,7 @@ export default {
   created() {
     this.isScore=this.$route.query.isScore
     // console.log(this.isScore)
-    // this.getData()
+    this.getData()
     this.init()
   },
   data() {
@@ -79,13 +79,13 @@ export default {
           name: '价格',
           type: 'complex',
           state: 'asc',
-          code: 2,
+          code: 1,
           active:false
         },
         {
           name: '新品',
           type: 'normal',
-          code: 1,
+          code: 2,
           active:false
         }
       ],
@@ -124,7 +124,8 @@ export default {
       this.$router.push('/goods/'+id)
     },
     switchSort(item){
-
+      console.log(item.state)
+      this.init(item.code,item.state)
       this.sortedList.forEach(e=>{
         e.active=false
       })
@@ -135,21 +136,21 @@ export default {
     },
     transformIconState(item) {
       item.state = item.state === 'asc' ? 'desc' : 'asc'
-      this.switchSort(item)
     },
-    init(){
+    init(code,state){
+      // console.log(code,state)
       getAllProduct({
         currPage: 1,
         isHot: 0,
         isIntegral: 0,
         keyWord: "",
-        order: 0,
-        orderType: "",
+        order: code === undefined ? 0 : code,
+        orderType: state === undefined ? 'asc' : state,
         status:1
       }).then(res => {
         if(res.code === 200){
           this.productList =res.page
-          console.log(this.productList)
+          // console.log(this.productList)
         }
       })
     }
