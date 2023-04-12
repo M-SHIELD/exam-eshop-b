@@ -89,19 +89,17 @@ public class UserBehaviorServiceImpl extends ServiceImpl<UserBehaviorDao, UserBe
     @Override
     public PageUtils getBehaviors(Integer current, Long uid, Integer behaviorType) {
 
+        //分页查询
+
         IPage<UserBehaviorEntity> iPage = new Page<>(current, 10);
 
-
         QueryWrapper<UserBehaviorEntity> queryWrapper = new QueryWrapper<>();
-
         queryWrapper = queryWrapper.eq("user_id", uid).eq("behavior_type", behaviorType);
-
 
         IPage<UserBehaviorEntity> page = this.page(
                 iPage,
                 queryWrapper
         );
-
 
         return new PageUtils(page);
     }
