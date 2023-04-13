@@ -84,6 +84,7 @@ export default {
           username: this.username
         }).then(res => {
           if(res.code == 200){
+            Toast("注册成功！")
             this.$router.push('/login')
           }
         })

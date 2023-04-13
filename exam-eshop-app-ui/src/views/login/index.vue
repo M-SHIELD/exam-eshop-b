@@ -56,6 +56,7 @@ export default {
         if (res.msg === '登录成功') {
           localStorage.setItem('TOKEN', res.token)
           localStorage.setItem('avator', res.avator)
+          Toast.success('登录成功')
           this.$router.push('/')
         }
       })

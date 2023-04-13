@@ -23,9 +23,9 @@ import java.util.UUID;
 public class JwtUtil {
 
     /**
-     * 过期时间 2小时
+     * 过期时间 24小时
      */
-    public static final Long JWT_TTL = 2 * 60 * 60 * 1000L;
+    public static final Long JWT_TTL = 24 * 60 * 60 * 1000L;
 
     /**
      * 密钥
