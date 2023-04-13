@@ -101,7 +101,7 @@
 <script>
 import {Toast} from 'vant'
 import FooterMenu from "@/components/footerMenu";
-import {postuserinformation} from "@/api/userinformation";
+import {postUserInformation} from "@/api/userinformation";
 
 export default {
   data() {
@@ -117,8 +117,8 @@ export default {
   methods: {
     init() {
       if (this.token) {
-        postuserinformation().then(res => {
-          if (res.code == 200) {
+        postUserInformation().then(res => {
+          if (res.code === 200) {
             this.userlist = res.data
           }
         })
