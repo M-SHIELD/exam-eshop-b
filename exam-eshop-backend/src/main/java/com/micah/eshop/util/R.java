@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
  * 返回数据
  *
@@ -29,11 +30,12 @@ import java.util.Map;
 @Accessors(chain = true)
 public class R extends HashMap<String, Object> {
     private static final long serialVersionUID = 1L;
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     public R() {
         put("code", 200);
         put("msg", "success");
-        put("time", simpleDateFormat.format(new Date()));
+        put("time", SIMPLE_DATE_FORMAT.format(new Date()));
         put("success", Boolean.TRUE);
     }
 
@@ -62,12 +64,7 @@ public class R extends HashMap<String, Object> {
     }
 
     public static R init(Boolean flag, String thing) {
-        if (flag) {
-            return ok(thing + "成功");
-        } else {
-            return error(thing + "失败");
-        }
-
+        return flag ? ok(thing + "成功") : error(thing + "失败");
     }
 
     public static R error(int code, String msg) {
@@ -95,6 +92,7 @@ public class R extends HashMap<String, Object> {
         return new R();
     }
 
+    @Override
     public R put(String key, Object value) {
         super.put(key, value);
         return this;

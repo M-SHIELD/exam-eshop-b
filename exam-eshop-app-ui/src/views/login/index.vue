@@ -22,6 +22,7 @@
       <!-- 通过 validator 进行函数校验 -->
       <van-field
           v-model="password"
+          type="password"
           name="validator"
           placeholder="请输入密码"
           :rules="[{ pattern: /\d{6}/,message: '密码错误' }]"
@@ -37,22 +38,24 @@
 import {getUUID} from '@/utils/uuid'
 import {postlogin} from "@/api/login";
 import {Toast} from "vant";
+
 export default {
   name: "login",
   data() {
     return {
-      username: '',
-      password: '',
+      username: 'user1',
+      password: '123456',
     };
   },
-  methods:{
-    loginSuccess(){
+  methods: {
+    loginSuccess() {
       postlogin({
         username: this.username,
         password: this.password
-          }).then(res => {
-        if(res.msg == '登录成功'){
-          localStorage.setItem('TOKEN',res.token)
+      }).then(res => {
+        if (res.msg === '登录成功') {
+          localStorage.setItem('TOKEN', res.token)
+          localStorage.setItem('avator', res.avator)
           this.$router.push('/')
         }
       })
@@ -63,9 +66,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.textbox{
+.textbox {
   margin: 0.5rem;
-  .two{
+
+  .two {
     font-size: 5px;
     color: #cccccc;
   }

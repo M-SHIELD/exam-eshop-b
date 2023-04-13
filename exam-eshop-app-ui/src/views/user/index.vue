@@ -6,10 +6,11 @@
           round
           width="100"
           height="100"
-          :src="this.userlist.avator!=null?this.userlist.avator:'https://api.multiavatar.com/asd.png'"
+          :src="this.userlist.avator!=null?this.userlist.avator:'https://th.bing.com/th/id/OIP.ytZ3w0NP3JfGHzPzNXO25QAAAA?w=146&h=150&c=7&r=0&o=5&dpr=1.3&pid=1.7'"
       />
       <span class="user-info-name" v-if="token">micah</span>
-      <span class="user-info-name" v-if="!token"><span @click="$router.push('/login')">登录/</span><span @click="$router.push('/landing')">注册</span></span>
+      <span class="user-info-name" v-if="!token"><span @click="$router.push('/login')">登录/</span><span
+          @click="$router.push('/landing')">注册</span></span>
     </van-row>
 
     <!--    钱包-->
@@ -41,24 +42,22 @@
     </div>
 
 
-
-
     <van-cell-group title="我的功能" class="user-func">
       <van-cell>
-<!--        <van-col span="6" @click="gotoCoupon">-->
-<!--          <van-icon class="iconfont" class-prefix="icon" name="youhuiquan"/>-->
-<!--          优惠券-->
-<!--        </van-col>-->
+        <!--        <van-col span="6" @click="gotoCoupon">-->
+        <!--          <van-icon class="iconfont" class-prefix="icon" name="youhuiquan"/>-->
+        <!--          优惠券-->
+        <!--        </van-col>-->
         <van-col @click="toCollect" span="6">
           <van-icon class="iconfont" class-prefix="icon" name="shangpinshoucang"/>
           商品收藏
         </van-col>
-        <van-col  @click="toFootPrint" span="6">
+        <van-col @click="toFootPrint" span="6">
           <van-icon class="iconfont" class-prefix="icon" name="zuji"/>
           浏览足迹
         </van-col>
         <van-col span="6" @click="gotoAddress">
-          <van-icon class="iconfont" class-prefix="icon" name="shouhuodizhi1" />
+          <van-icon class="iconfont" class-prefix="icon" name="shouhuodizhi1"/>
           地址管理
         </van-col>
         <van-col span="6" @click="toWallet">
@@ -103,11 +102,12 @@
 import {Toast} from 'vant'
 import FooterMenu from "@/components/footerMenu";
 import {postuserinformation} from "@/api/userinformation";
+
 export default {
-  data(){
-    return{
-      token: localStorage.getItem('TOKEN')? 1 : 0,
-      userlist:{}
+  data() {
+    return {
+      token: localStorage.getItem('TOKEN') ? 1 : 0,
+      userlist: {}
     }
   },
   components: {FooterMenu},
@@ -115,10 +115,10 @@ export default {
     this.init()
   },
   methods: {
-    init(){
-      if(this.token){
+    init() {
+      if (this.token) {
         postuserinformation().then(res => {
-          if(res.code == 200){
+          if (res.code == 200) {
             this.userlist = res.data
           }
         })
@@ -152,22 +152,25 @@ export default {
 </script>
 
 <style lang="scss">
-.orderState{
+.orderState {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  .item{
+
+  .item {
     padding: 10px 22px;
     font-size: 12px;
     text-align: center;
     background-color: #fff;
   }
+
   .iconfont {
     display: block;
     font-size: 30px;
     padding: 5px;
   }
 }
+
 .user {
   background: #f8f8f8;
   height: 100vh;
@@ -175,7 +178,7 @@ export default {
   &-info {
     height: 100px;
     padding: 15px;
-    background: url(../../assets/images/user_head_bg.png) no-repeat;
+    //background: url(../../assets/images/user_head_bg.png) no-repeat;
     background-size: 100%;
 
     &-name {

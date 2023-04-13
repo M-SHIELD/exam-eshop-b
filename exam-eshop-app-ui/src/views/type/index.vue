@@ -2,6 +2,7 @@
   <div>
     <!--    搜索框-->
     <van-search
+        @click="gotosearch"
         class="top-search"
         input-align="center"
         v-model="searchValue"
@@ -13,15 +14,15 @@
     <!--左右分类布局-->
     <van-tree-select class="typeRoom" height="55vw" :items="items" :main-active-index.sync="typeActive">
       <template #content>
-        <div :key="inx" v-for="(n,inx) in items">
-          <div v-if="typeActive==inx" class="typeshow">
-            <img class="type-bg" :src="n.imgUrl" alt="">
-            <div :key="index" v-for="(list,index) in n.children" class="typeList">
-              <div class="typeName">{{ list.cname }}</div>
+        <div :key="index1" v-for="(item1,index1) in items">
+          <div v-if="typeActive===index1" class="typeshow">
+            <img class="type-bg" :src="item1.imgUrl" alt="">
+            <div :key="index2" v-for="(item2,index2) in item1.children" class="typeList">
+              <div class="typeName">{{ item2.cname }}</div>
               <van-grid :border="false" :column-num="3">
-                <van-grid-item class="type-list" v-for="(l2,i2) in list.children" :key="i2"
-                               :icon="l2.imgUrl"
-                               :text="l2.cname">
+                <van-grid-item class="type-list" v-for="(item3,index3) in item2.children" :key="index3"
+                               :icon="item3.imgUrl"
+                               :text="item3.cname">
                 </van-grid-item>
               </van-grid>
             </div>
@@ -38,7 +39,7 @@
 </template>
 
 <script>
-import FooterMenu from "@/components/footerMenu";
+import FooterMenu from "@/components/footerMenu/index.vue";
 import {categoryList} from "@/api/category";
 
 export default {
@@ -61,6 +62,14 @@ export default {
         this.items.forEach(e => {
           e.text = e.cname
         })
+      })
+    },
+    gotosearch() {
+      this.$router.push({
+        path: '/search',
+        query: {
+          keyword: this.searchValue
+        }
       })
     }
   },

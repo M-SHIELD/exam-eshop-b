@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import home from "@/views/tarbar/home";
+import home from "@/views/home";
 
 Vue.use(VueRouter)
 
@@ -13,7 +13,7 @@ const routes = [
     {
         path: '/type',
         name: 'type',
-        component: () => import('@/views/tarbar/type')
+        component: () => import('@/views/type')
     },
     {
         path: '/login',
