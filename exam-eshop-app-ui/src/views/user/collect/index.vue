@@ -19,39 +19,48 @@
 
     </van-cell-group>
 
-    <!--    足迹展示区域-->
+    <!--    收藏展示区域-->
     <div class="proRoom">
 
       <van-grid :border="false" :column-num="2">
-        <van-grid-item v-for="(item,index) in proList" :key="index">
-
+        <van-grid-item v-for="(item,index) in collectList" :key="index">
           <div class="pro">
             <div v-if="isManage" class="check">
-              <van-checkbox @click="changeCheck" v-model="item.isCheck"></van-checkbox>
+              <!--              {{item.isCheck}}-->
+              <van-checkbox @click="changeCheck(item.id)" v-model="item.isCheck"></van-checkbox>
             </div>
             <div @click="toDetail(item.id)" class="proitem">
               <div class="propic">
-                <img :src="item.goodsImg" alt="">
+                <img :src="item.image" alt="">
               </div>
-              <div class="proname">{{ item.goodsName }}</div>
+              <div class="proname">{{ item.name }}</div>
               <div class="proprice">￥{{ item.price }}</div>
             </div>
           </div>
         </van-grid-item>
       </van-grid>
 
-
     </div>
 
     <van-submit-bar v-if="isManage" :price="0" button-text="删除" @submit="onRemove">
-      <van-checkbox @click="clickAll" v-model="isAll">全选</van-checkbox>
+      <van-checkbox @click="clickAll()" v-model="isAll">全选</van-checkbox>
     </van-submit-bar>
+
+    <van-pagination
+        v-if="show"
+        v-model="proList.currPage"
+        :total-items="proList.totalPage"
+        :show-page-size="3"
+        force-ellipses
+    />
+
+    <van-empty v-if="!show" image="error" description="没有搜到该商品，换个关键词试试吧！"/>
 
   </div>
 </template>
 
 <script>
-import {collectList} from "@/api/collect";
+import {getAllcollect,delallcollect} from "@/api/collect";
 
 export default {
   name: "index",
@@ -62,54 +71,59 @@ export default {
     return {
       isManage: false,
       isAll: false,
-      proList: [
-        {
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png'),
-          id: 1,
-          isCheck: false
-        }, {
-          id: 2,
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png'),
-          isCheck: false
-        }, {
-          id: 3,
-          name: '华为手机',
-          price: '6996.0',
-          pic: require('@/assets/images/huawei.png'),
-          isCheck: false
-        }
-      ]
+      arr: [],
+      proList: {},
+      collectList: [],
+      show: '',
+      checkeddata: false
     }
   },
   methods: {
-    changeCheck() {
-      var count = 0
-      this.proList.forEach(e => {
-        if (e.isCheck)
-          count++
+    changeCheck(id) {
+      let count = 0
+      this.proList.list.forEach(e => {
+        if(e.id === id){
+          if(e.isCheck){
+            if(this.arr.indexOf(id) === -1){
+              this.arr.push(id)
+              // console.log(this.arr)
+            }
+            count++
+          }else{
+            this.arr.splice(this.arr.indexOf(id),1)
+            // console.log(this.arr)
+          }
+        }
+
+        // if (e.isCheck) {
+        //
+        // }
       })
-      if (count === this.proList.length) {
+
+      if (count === this.collectList.length) {
         this.isAll = true
       } else {
         this.isAll = false
       }
 
-
+      // this.isAll = !this.isAll
     },
     clickAll() {
-      if (this.isAll) {
-        this.proList.forEach(e => {
-          e.isCheck = true
-        })
-      } else {
-        this.proList.forEach(e => {
+      if (!this.isAll) {
+        this.collectList.forEach(e => {
           e.isCheck = false
+          this.arr.pop()
+          // console.log(this.arr)
+        })
+
+      } else {
+        this.collectList.forEach(e => {
+          e.isCheck = true
+          this.arr.push(e.id)
+          // console.log(this.arr)
         })
       }
+      // this.isAll = !this.isAll
     },
     manage() {
       this.isManage = !this.isManage
@@ -118,16 +132,36 @@ export default {
       this.$router.push('/goods/' + id)
     },
     onRemove() {
-
+      delallcollect({
+        behaviorType: 1,
+        currPage: 0,
+        productId: this.arr.toString()
+      }).then(res => {
+        if(res.code === 200){
+          this.$router.go(0)
+        }
+      })
     },
     getData() {
-      collectList({
-        "maiJiaId": 2
-      }).then(e => {
-        this.proList = e.data
-        this.proList.forEach(e=>{
-          e.isCheck=false
-        })
+      getAllcollect({
+        behaviorType: 1,
+        currPage: 1,
+        productId: ""
+      }).then(res => {
+
+
+        if (res.code === 200) {
+          this.proList = res.page
+
+          this.show = res.page.list.length
+
+          this.proList.list.forEach(e => {
+            // e.isCheck = false
+            this.$set(e, "isCheck", false)
+          })
+          this.collectList = this.proList.list
+
+        }
       })
     }
   },
@@ -202,4 +236,5 @@ export default {
     }
   }
 }
+
 </style>
