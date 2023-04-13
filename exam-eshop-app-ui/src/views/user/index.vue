@@ -178,7 +178,7 @@ export default {
   &-info {
     height: 100px;
     padding: 15px;
-    //background: url(../../assets/images/user_head_bg.png) no-repeat;
+    background: url("@/assets/images/user_head_bg.png") no-repeat;
     background-size: 100%;
 
     &-name {
