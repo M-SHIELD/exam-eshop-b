@@ -15,6 +15,7 @@ public class DoubleSerializer extends JsonSerializer<Double> {
     public DoubleSerializer() {
     }
 
+    @Override
     public void serialize(Double value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
         if (StrUtil.hasBlank(value.toString())) {
             gen.writeString(value + "");

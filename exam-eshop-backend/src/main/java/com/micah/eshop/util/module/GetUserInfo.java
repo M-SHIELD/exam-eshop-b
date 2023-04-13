@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import static com.micah.eshop.enums.AppHttpCodeEnum.NO_OPERATOR_AUTH;
 
+/**
+ * @author Micah
+ */
 @Component
 public class GetUserInfo {
 
@@ -30,7 +33,7 @@ public class GetUserInfo {
         String token = request.getHeader(tokenMake);
         String sub = JwtUtil.getSub(token);
         JSONObject jsonObject = JSON.parseObject(sub);
-        String suid = "";
+        String suid;
         try {
             suid = String.valueOf(jsonObject.get("uid"));
         } catch (NullPointerException nullPointerException) {
@@ -41,17 +44,16 @@ public class GetUserInfo {
 
     /**
      * 判断request是否有权限访问uid字段的请求
+     *
      * @param request Request请求
-     * @param uid 验证对象的uid字段
-     * @return 是否拥有权限
+     * @param uid     验证对象的uid字段
      */
-    public static Boolean havePermission(HttpServletRequest request,Long uid) {
+    public static void havePermission(HttpServletRequest request, Long uid) {
         Long uid1 = getUid(request);
         boolean equals = uid1.equals(uid);
         if (!equals) {
             throw new SystemException(NO_OPERATOR_AUTH);
         }
-        return true;
     }
 
     @Autowired(required = false)
