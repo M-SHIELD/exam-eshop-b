@@ -44,7 +44,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
     @Override
     public R login(LoginParam loginParam) {
         /*查询用户是否存在*/
-        LambdaQueryWrapper<UserEntity> lqw = new LambdaQueryWrapper();
+        LambdaQueryWrapper<UserEntity> lqw = new LambdaQueryWrapper<>();
         lqw.eq(UserEntity::getUsername, loginParam.getUsername());
         lqw.eq(UserEntity::getPassword, loginParam.getPassword());
         UserEntity user = getOne(lqw);
@@ -52,22 +52,25 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
         if (user == null) {
             return R.error("用户不存在或密码不对");
         }
-        if (user.getIsDel()==1){
+        if (user.getIsDel() == 1) {
             return R.error("用户已被封禁或删除");
         }
 
         //将需要存储的信息放入到jwt内
-        UserBo userBo = BeanCopyUtils.copyBean(user, UserBo.class); /*拷贝信息*/
+        /*拷贝信息*/
+        UserBo userBo = BeanCopyUtils.copyBean(user, UserBo.class);
         userBo.setUid(user.getId());
         String jsonEshopUserBo = JSON.toJSONString(userBo);
-        String jwt = JwtUtil.createJWT(jsonEshopUserBo);/*封装用户信息到JWT*/
-        String expiration = JwtUtil.getExpiration(jwt);//获取过期时间
+        /*封装用户信息到JWT*/
+        String jwt = JwtUtil.createJWT(jsonEshopUserBo);
+        //获取过期时间
+        String expiration = JwtUtil.getExpiration(jwt);
 
 
         Map<String, Object> map = new HashMap<>();
         map.put("token", jwt);
         map.put("expires_time", expiration);
-
+        map.put("avator", user.getAvator());
 
         return R.ok(map).put("msg", "登录成功");
 
@@ -98,10 +101,10 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
     @Override
     public R getInfo(Long uid) {
         LambdaQueryWrapper<UserEntity> userLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        userLambdaQueryWrapper.eq(UserEntity::getId,uid);
+        userLambdaQueryWrapper.eq(UserEntity::getId, uid);
         UserEntity one = getOne(userLambdaQueryWrapper);
         one.setPassword("");
-        return R.ok().put("data",one);
+        return R.ok().put("data", one);
     }
 
 }

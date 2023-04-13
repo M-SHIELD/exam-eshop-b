@@ -17,6 +17,12 @@ public interface ProductService extends IService<ProductEntity> {
 
     PageUtils queryPage(ProductParam params);
 
+    /**
+     * 查询商品详情
+     * @param id 商品id
+     * @param uid 用户id
+     * @return 详情信息
+     */
     ProductDto details(String id, Long uid);
 }
 

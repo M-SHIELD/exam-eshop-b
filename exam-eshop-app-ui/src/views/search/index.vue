@@ -2,10 +2,11 @@
   <div>
     <van-row style="background: red" type="flex" align="center">
       <van-col>
-        <van-icon name="arrow-left" @click="$router.push('/')" />
+        <van-icon class="back-icon" name="arrow-left" @click="$router.push('/')" />
       </van-col>
       <van-col span="22">
         <van-search
+            class="search-box"
             v-model="value"
             shape="round"
             background="#FF0000"
@@ -161,6 +162,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.search-box{
+  width: 100%;
+//margin-top: .1rem;
+}
+.back-icon{
+  font-size: 0.7rem;
+  top: -.1rem;
+  //line-height: 0.7rem;
+}
+
 .history {
   height: 3rem;
 }

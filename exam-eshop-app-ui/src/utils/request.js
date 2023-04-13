@@ -23,16 +23,23 @@ service.interceptors.request.use(
 
 /** 响应拦截器 */
 service.interceptors.response.use(
-    response => {
-        if (response.data.code != undefined) {
-            if (response.data.code !== 0 && response.data.code !== 200) {
-                Toast.fail('请求失败')
-                return Promise.reject(response.data.msg || 'error')
+    res => {
+        if (res.data.code !== undefined) {
+            if (res.data.code === 406) {
+                Toast.fail('登录失效，请重新登录')
+                localStorage.removeItem('TOKEN')
+                location.href = '/login'
+                return
+            }
+            if (res.data.code !== 0 && res.data.code !== 200 && res.data.success !== true) {
+                Toast.fail('请求失败:'+res.data.msg)
+                //抛出前端错误
+                return Promise.reject(res.data.msg || 'error')
             } else {
-                return response.data
+                return res.data
             }
         } else {
-            return response.data
+            return res.data
         }
     }
 )

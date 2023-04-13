@@ -12,7 +12,19 @@
           <van-search class="header-search" v-model="search_value" placeholder="请输入搜索关键词" @click="gotosearch"/>
         </van-col>
         <van-col>
-          <van-button class="header-btn-login" size="small" plain hairline type="danger" @click="$router.push('/login')" v-if="token">登录</van-button>
+          <van-button class="header-btn-login" size="small" plain hairline type="danger" @click="$router.push('/login')"
+                      v-if="hasToken">登录
+          </van-button>
+          <van-image
+              @click="gotoUser"
+              class="avator-logo"
+              v-if="!hasToken"
+              round
+              width="40"
+              height="40"
+              :src="avator"
+          />
+
         </van-col>
       </van-row>
       <!--    滚动的按钮-->
@@ -78,14 +90,15 @@
 </template>
 
 <script>
-import FooterMenu from "@/components/footerMenu";
+import FooterMenu from "@/components/footerMenu/index.vue";
 
 export default {
   name: 'home',
   components: {FooterMenu},
   data() {
     return {
-      token: localStorage.getItem('TOKEN')?0:1,
+      hasToken: localStorage.getItem('TOKEN') ? 0 : 1,
+      avator: localStorage.getItem('avator'),
       active: 0,
       search_value: "",
       tabList: [`推荐`, `居家生活`, '宠物生活', '服饰鞋包', '美食酒水', '个护清洁', '母婴亲子', '运动旅行', '数码家电', '严选全球'],
@@ -97,54 +110,54 @@ export default {
       ],
       iconList: [
         {
-          text: "新品首发", icon: require('../../../assets/icon-init/icon_l_1.png')
+          text: "新品首发", icon: require('../../assets/icon-init/icon_l_1.png')
         }, {
-          text: "居家生活", icon: require('../../../assets/icon-init/icon_l_2.png')
+          text: "居家生活", icon: require('../../assets/icon-init/icon_l_2.png')
         }, {
-          text: "服饰鞋包", icon: require('../../../assets/icon-init/icon_l_3.png')
+          text: "服饰鞋包", icon: require('../../assets/icon-init/icon_l_3.png')
         }, {
-          text: "美食酒水", icon: require('../../../assets/icon-init/icon_l_4.png')
+          text: "美食酒水", icon: require('../../assets/icon-init/icon_l_4.png')
         }, {
-          text: "个护清洁", icon: require('../../../assets/icon-init/icon_l_5.png')
+          text: "个护清洁", icon: require('../../assets/icon-init/icon_l_5.png')
         }, {
-          text: "母婴亲子", icon: require('../../../assets/icon-init/icon_l_6.png')
+          text: "母婴亲子", icon: require('../../assets/icon-init/icon_l_6.png')
         }, {
-          text: "运动旅行", icon: require('../../../assets/icon-init/icon_l_7.png')
+          text: "运动旅行", icon: require('../../assets/icon-init/icon_l_7.png')
         }, {
-          text: "数码家电", icon: require('../../../assets/icon-init/icon_l_8.png')
+          text: "数码家电", icon: require('../../assets/icon-init/icon_l_8.png')
         }, {
-          text: "宠物生活", icon: require('../../../assets/icon-init/icon_l_9.png')
+          text: "宠物生活", icon: require('../../assets/icon-init/icon_l_9.png')
         }, {
-          text: "每日秒杀", icon: require('../../../assets/icon-init/icon_l_10.png')
+          text: "每日秒杀", icon: require('../../assets/icon-init/icon_l_10.png')
         },
       ],
       goodsList: [
         {
-          imgurl: require('../../../assets/icon-init/icon_g_1.webp'),
+          imgurl: require('../../assets/icon-init/icon_g_1.webp'),
           text: '全部商品'
         }, {
-          imgurl: require('../../../assets/icon-init/icon_g_2.webp'),
+          imgurl: require('../../assets/icon-init/icon_g_2.webp'),
           text: '积分商品'
         }, {
-          imgurl: require('../../../assets/icon-init/icon_g_3.webp'),
+          imgurl: require('../../assets/icon-init/icon_g_3.webp'),
           text: '居家生活榜'
         }, {
-          imgurl: require('../../../assets/icon-init/icon_g_4.webp'),
+          imgurl: require('../../assets/icon-init/icon_g_4.webp'),
           text: '个护清洁榜'
         }, {
-          imgurl: require('../../../assets/icon-init/icon_g_5.webp'),
+          imgurl: require('../../assets/icon-init/icon_g_5.webp'),
           text: '数码家电榜'
         }, {
-          imgurl: require('../../../assets/icon-init/icon_g_6.webp'),
+          imgurl: require('../../assets/icon-init/icon_g_6.webp'),
           text: '宠物生活榜'
         }, {
-          imgurl: require('../../../assets/icon-init/icon_g_7.webp'),
+          imgurl: require('../../assets/icon-init/icon_g_7.webp'),
           text: '母婴亲子榜'
         }, {
-          imgurl: require('../../../assets/icon-init/icon_g_8.webp'),
+          imgurl: require('../../assets/icon-init/icon_g_8.webp'),
           text: '运动旅行榜'
         }, {
-          imgurl: require('../../../assets/icon-init/icon_g_9.webp'),
+          imgurl: require('../../assets/icon-init/icon_g_9.webp'),
           text: '严选全球榜'
         },
       ]
@@ -162,19 +175,30 @@ export default {
       }
     },
     gotosearch() {
-      this.$router.push({name:'search'})
+      this.$router.push({name: 'search'})
+    },
+    gotoUser() {
+      this.$router.push({name: 'user'})
     }
   }
 }
 </script>
 
 <style scoped>
+.avator-logo{
+  width: 6.5rem;
+  height: 1.5rem;
+  line-height: 1.8rem;
+  margin-top: .3rem;
+  margin-left: .3rem;
+}
 .header-logo {
   width: 1rem;
   display: inline-block;
   margin: .4rem .1rem 0 .5rem;
   height: 0.8rem;
   line-height: 1.8rem;
+
 }
 
 .van-search__content {
@@ -182,14 +206,20 @@ export default {
 }
 
 .header-search {
-  width: 6rem;
+  width: 6.5rem;
   height: 1.5rem;
+  line-height: 1.8rem;
+  margin-top: .1rem;
 }
 
 .header-btn-login {
   padding: 0 .2rem 0 .2rem;
   height: .6rem;
   margin-top: .5rem;
+  margin-left: .5rem;
+
+  line-height: 1.8rem;
+  top: -.2rem;
   /*border-radius: .9rem;*/
 }
 

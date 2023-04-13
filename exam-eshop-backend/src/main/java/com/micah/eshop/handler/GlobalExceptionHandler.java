@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import java.util.Objects;
+
+/**
+ * @author Micah
+ */
 @ControllerAdvice
 @RestControllerAdvice
 @Slf4j
@@ -43,7 +48,7 @@ public class GlobalExceptionHandler {
     public R exceptionHandler(MethodArgumentNotValidException e) {
         log.error("参数效验出现了异常！---> ", e);
         //获取异常消息
-        String message = e.getBindingResult().getFieldError().getDefaultMessage();
+        String message = Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage();
         return R.error(AppHttpCodeEnum.REQUIRE_USERNAME.getCode(), message);
     }
 
@@ -68,7 +73,7 @@ public class GlobalExceptionHandler {
      * @return 402
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public R HttpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e) {
+    public R httpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e) {
         //打印异常信息
         log.error("出现了请求方式不对异常！---> ", e);
         //从异常对象中获取提示信息封装返回

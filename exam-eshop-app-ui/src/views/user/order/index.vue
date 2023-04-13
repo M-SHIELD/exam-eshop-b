@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       //activeName: this.$route.params.active,
-      activeName: this.$route.params.active,
+      activeName: -1,
       orderList: [],
     };
   },

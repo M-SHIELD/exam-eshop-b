@@ -46,8 +46,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                 //此时还差一层遍历
                 lv2.forEach(e1->{
                     List<CategoryEntity> lv3 = getCategories(all, e1.getId());
-                    if (lv3.size()>0)
+                    if (lv3.size()>0) {
                         e1.setChildren(lv3);
+                    }
                 });
                 e.setChildren(lv2);//传入
             }
@@ -63,8 +64,8 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
      * @return 父id等于传进来的id的值
      */
     private List<CategoryEntity> getCategories(List<CategoryEntity> list, Integer parentId) {
-//        return this.baseMapper.selectList(new QueryWrapper<Category>().eq("parentId", 0));
-        return list.stream().filter(e -> e.getParentId() == parentId).collect(Collectors.toList());
+
+        return list.stream().filter(e -> e.getParentId().equals(parentId)).collect(Collectors.toList());
     }
 
 }

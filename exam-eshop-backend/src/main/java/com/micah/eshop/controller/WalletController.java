@@ -19,7 +19,6 @@ import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.util.R;
 
 
-
 /**
  * 用户钱包表
  *
@@ -41,7 +40,7 @@ public class WalletController {
      */
     @GetMapping("/list")
     @ApiOperation("用户钱包表:列表:自定义参数")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = walletService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -53,8 +52,8 @@ public class WalletController {
      */
     @ApiOperation("用户钱包表:信息:id")
     @GetMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id){
-		WalletEntity wallet = walletService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        WalletEntity wallet = walletService.getById(id);
 
         return R.ok().put("wallet", wallet);
     }
@@ -64,8 +63,8 @@ public class WalletController {
      */
     @PostMapping("/save")
     @ApiOperation("用户钱包表:保存")
-    public R save(@RequestBody WalletEntity wallet){
-		walletService.save(wallet);
+    public R save(@RequestBody WalletEntity wallet) {
+        walletService.save(wallet);
 
         return R.ok();
     }
@@ -75,8 +74,8 @@ public class WalletController {
      */
     @PostMapping("/update")
     @ApiOperation("用户钱包表:更新")
-    public R update(@RequestBody WalletEntity wallet){
-		walletService.updateById(wallet);
+    public R update(@RequestBody WalletEntity wallet) {
+        walletService.updateById(wallet);
 
         return R.ok();
     }
@@ -86,8 +85,8 @@ public class WalletController {
      */
     @PostMapping("/delete")
     @ApiOperation("用户钱包表:删除")
-    public R delete(@RequestBody Long[] ids){
-		walletService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        walletService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

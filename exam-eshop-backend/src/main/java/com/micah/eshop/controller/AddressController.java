@@ -1,8 +1,14 @@
 package com.micah.eshop.controller;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import java.util.Arrays;
 import java.util.Map;
 
+import com.micah.eshop.entity.model.AddressParam;
+import com.micah.eshop.util.BeanCopyUtils;
+import com.micah.eshop.util.module.GetUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +24,7 @@ import com.micah.eshop.service.AddressService;
 import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.util.R;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -39,10 +46,11 @@ public class AddressController {
     /**
      * 列表
      */
-    @GetMapping("/list")
-    @ApiOperation("收货地址表:列表:自定义参数")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = addressService.queryPage(params);
+    @PostMapping("/getAddresses")
+    @ApiOperation("获取地址列表")
+    public R list(@RequestBody AddressParam param, HttpServletRequest request) {
+        Long uid = GetUserInfo.getUid(request);
+        PageUtils page = addressService.queryPage(param, uid);
 
         return R.ok().put("page", page);
     }
@@ -51,10 +59,13 @@ public class AddressController {
     /**
      * 信息
      */
-    @ApiOperation("收货地址表:信息:id")
-    @GetMapping("/info/{id}")
-    public R info(@PathVariable("id") Integer id){
-		AddressEntity address = addressService.getById(id);
+    @ApiOperation("地址详情")
+    @GetMapping("/detail/{id}")
+    public R info(@PathVariable("id") Integer id, HttpServletRequest request) {
+
+        AddressEntity address = addressService.getById(id);
+
+        GetUserInfo.havePermission(request, Long.valueOf(address.getUid()));
 
         return R.ok().put("address", address);
     }
@@ -62,34 +73,59 @@ public class AddressController {
     /**
      * 保存
      */
-    @PostMapping("/save")
-    @ApiOperation("收货地址表:保存")
-    public R save(@RequestBody AddressEntity address){
-		addressService.save(address);
+    @PostMapping("/add")
+    @ApiOperation("新建地址")
+    public R save(@RequestBody AddressParam param, HttpServletRequest request) {
+        Long uid = GetUserInfo.getUid(request);
+        //新建对象
 
-        return R.ok();
+        AddressEntity address = BeanCopyUtils.copyBean(param, AddressEntity.class);
+        address.setUid(Math.toIntExact(uid));
+        address.setId(null);
+        address.setLongitude(new BigDecimal("0"));
+        address.setLatitude(new BigDecimal("0"));
+        address.setCreateTime(new Date());
+        address.setUpdateTime(new Date());
+        address.setIsDel(0);
+
+        addressService.save(address);
+        return R.ok("新建地址成功");
     }
 
     /**
      * 修改
      */
     @PostMapping("/update")
-    @ApiOperation("收货地址表:更新")
-    public R update(@RequestBody AddressEntity address){
-		addressService.updateById(address);
+    @ApiOperation("更新收货地址")
+    public R update(@RequestBody AddressParam param, HttpServletRequest request) {
 
-        return R.ok();
+        Long uid = GetUserInfo.getUid(request);
+        AddressEntity address = BeanCopyUtils.copyBean(param, AddressEntity.class);
+        address.setUid(Math.toIntExact(uid));
+        address.setUpdateTime(new Date());
+        address.setIsDel(0);
+
+        addressService.updateById(address);
+
+        return R.ok("更新地址成功");
     }
 
     /**
      * 删除
      */
     @PostMapping("/delete")
-    @ApiOperation("收货地址表:删除")
-    public R delete(@RequestBody Integer[] ids){
-		addressService.removeByIds(Arrays.asList(ids));
+    @ApiOperation("批量删除地址")
+    public R delete(@RequestBody Integer[] ids, HttpServletRequest request) {
 
-        return R.ok();
+        //循环判断是否拥有权限
+        for (AddressEntity listById : addressService.listByIds(Arrays.asList(ids))) {
+            GetUserInfo.havePermission(request, Long.valueOf(listById.getUid()));
+
+        }
+        //有权限删除
+        addressService.removeByIds(Arrays.asList(ids));
+
+        return R.ok("批量删除地址成功");
     }
 
 }

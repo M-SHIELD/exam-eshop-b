@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import home from "@/views/tarbar/home";
+import home from "@/views/home";
 
 Vue.use(VueRouter)
 
@@ -13,7 +13,7 @@ const routes = [
     {
         path: '/type',
         name: 'type',
-        component: () => import('@/views/tarbar/type')
+        component: () => import('@/views/type')
     },
     {
         path: '/login',
@@ -21,9 +21,9 @@ const routes = [
         component: () => import('@/views/login')
     },
     {
-        path: '/landing',
-        name: 'landing',
-        component: () => import('@/views/landing')
+        path: '/register',
+        name: 'register',
+        component: () => import('@/views/register')
     },
     {
         path: '/cart',
@@ -98,20 +98,19 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-   const token = localStorage.getItem('TOKEN')
-    if(token){
-        if(to.path !== '/login' && to.path !== '/landing'){
+    const token = localStorage.getItem('TOKEN')
+    if (token) {
+        if (to.path !== '/login' && to.path !== '/register') {
             next()
-        }else{
+        } else {
             next('/')
         }
-    }else{
-        if(to.path === '/user/order'|| to.path === '/user/collect' || to.path === '/user/footPrint' || to.path === '/user/footPrint' || to.path === '/user/wallet' || to.path === '/address'){
+    } else {
+        //改为白名单访问
+        if (to.path !== '/login' && to.path !== '/' && to.path !== '/register') {
             next('/login')
-
-        }else{
+        } else {
             next()
-
         }
     }
 })

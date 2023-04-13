@@ -67,7 +67,9 @@ public class ProductServiceImpl extends ServiceImpl<ProductDao, ProductEntity> i
 
         //sku
         QueryWrapper<SkuEntity> skuEntityQueryWrapper = new QueryWrapper<>();
-        skuEntityQueryWrapper = skuEntityQueryWrapper.eq("product_id", productDto.getId()).eq("is_del", 0);
+        skuEntityQueryWrapper = skuEntityQueryWrapper
+                .eq("product_id", productDto.getId())
+                .eq("is_del", 0);
         List<SkuEntity> skuEntities = skuService.list(skuEntityQueryWrapper);
         productDto.setSkus(skuEntities);
 

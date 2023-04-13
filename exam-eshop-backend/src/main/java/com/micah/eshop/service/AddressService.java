@@ -1,10 +1,9 @@
 package com.micah.eshop.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.micah.eshop.entity.model.AddressParam;
 import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.entity.dao.AddressEntity;
-
-import java.util.Map;
 
 /**
  * 收货地址表
@@ -15,6 +14,6 @@ import java.util.Map;
  */
 public interface AddressService extends IService<AddressEntity> {
 
-    PageUtils queryPage(Map<String, Object> params);
+    PageUtils queryPage(AddressParam params, Long uid);
 }
 
