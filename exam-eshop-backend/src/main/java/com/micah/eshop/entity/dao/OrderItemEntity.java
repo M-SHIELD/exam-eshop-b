@@ -1,4 +1,4 @@
-package com.micah.eshop.entity;
+package com.micah.eshop.entity.dao;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -13,17 +13,17 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * SKU表
+ * 订单详情表
  *
  * @author micah
  * @email mxmicah@qq.com
  * @date 2023-04-10 16:01:25
  */
 @Data
-@ApiModel(value = "com.micah.eshop.entity.SkuSKU表实体")
+@ApiModel(value = "com.micah.eshop.entity.OrderItem订单详情表实体")
 @Accessors(chain = true)
-@TableName("e_sku")
-public class SkuEntity implements Serializable {
+@TableName("e_order_item")
+public class OrderItemEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -33,39 +33,49 @@ public class SkuEntity implements Serializable {
     @ApiModelProperty(value = "自增主键")
     private Long id;
     /**
+     * 订单ID
+     */
+    @ApiModelProperty(value = "订单ID")
+    private Long orderId;
+    /**
      * 商品ID
      */
     @ApiModelProperty(value = "商品ID")
     private Long productId;
     /**
-     * SKU编码
+     * 商品名称
      */
-    @ApiModelProperty(value = "SKU编码")
-    private String skuCode;
+    @ApiModelProperty(value = "商品名称")
+    private String productName;
     /**
-     * 价格
+     * 商品图片
      */
-    @ApiModelProperty(value = "价格")
-    private BigDecimal price;
+    @ApiModelProperty(value = "商品图片")
+    private String productImage;
     /**
-     * 库存
+     * 商品单价
      */
-    @ApiModelProperty(value = "库存")
-    private Integer stock;
+    @ApiModelProperty(value = "商品单价")
+    private BigDecimal productPrice;
     /**
-     * 规格，如"颜色:红色,尺寸:XL"
+     * 商品数量
      */
-    @ApiModelProperty(value = "规格，如颜色:红色,尺寸:XL")
-    private String specification;
+    @ApiModelProperty(value = "商品数量")
+    private Integer quantity;
     /**
-     * 创建时间
+     * 小计金额
      */
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "小计金额")
+    private BigDecimal subtotalAmount;
+    /**
+     * 订单详情创建时间
+     */
+    @ApiModelProperty(value = "订单详情创建时间")
     private Date createTime;
     /**
-     * 更新时间
+     * 订单详情更新时间
      */
-    @ApiModelProperty(value = "更新时间")
+    @ApiModelProperty(value = "订单详情更新时间")
     private Date updateTime;
     /**
      * 是否删除，0：否，1：是

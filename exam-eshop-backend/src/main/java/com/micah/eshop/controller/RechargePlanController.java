@@ -13,7 +13,7 @@ import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
-import com.micah.eshop.entity.RechargePlanEntity;
+import com.micah.eshop.entity.dao.RechargePlanEntity;
 import com.micah.eshop.service.RechargePlanService;
 import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.util.R;

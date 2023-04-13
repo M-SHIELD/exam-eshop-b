@@ -2,7 +2,7 @@ package com.micah.eshop.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.micah.eshop.util.PageUtils;
-import com.micah.eshop.entity.SkuEntity;
+import com.micah.eshop.entity.dao.SkuEntity;
 
 import java.util.Map;
 

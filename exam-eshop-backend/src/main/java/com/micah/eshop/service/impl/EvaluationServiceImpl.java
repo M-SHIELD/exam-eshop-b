@@ -10,7 +10,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.EvaluationDao;
-import com.micah.eshop.entity.EvaluationEntity;
+import com.micah.eshop.entity.dao.EvaluationEntity;
 import com.micah.eshop.service.EvaluationService;
 
 

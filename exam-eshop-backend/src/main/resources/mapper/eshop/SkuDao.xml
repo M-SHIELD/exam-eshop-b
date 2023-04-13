@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.SkuDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.SkuEntity" id="skuMap">
+    <resultMap type="com.micah.eshop.entity.dao.SkuEntity" id="skuMap">
         <result property="id" column="id"/>
         <result property="productId" column="product_id"/>
         <result property="skuCode" column="sku_code"/>

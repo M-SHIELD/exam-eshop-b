@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.ShoppingCartDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.ShoppingCartEntity" id="shoppingCartMap">
+    <resultMap type="com.micah.eshop.entity.dao.ShoppingCartEntity" id="shoppingCartMap">
         <result property="id" column="id"/>
         <result property="uid" column="uid"/>
         <result property="productId" column="product_id"/>

@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.UserDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.UserEntity" id="userMap">
+    <resultMap type="com.micah.eshop.entity.dao.UserEntity" id="userMap">
         <result property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>

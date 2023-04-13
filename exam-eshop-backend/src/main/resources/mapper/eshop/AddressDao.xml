@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.AddressDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.AddressEntity" id="addressMap">
+    <resultMap type="com.micah.eshop.entity.dao.AddressEntity" id="addressMap">
         <result property="id" column="id"/>
         <result property="uid" column="uid"/>
         <result property="realName" column="real_name"/>

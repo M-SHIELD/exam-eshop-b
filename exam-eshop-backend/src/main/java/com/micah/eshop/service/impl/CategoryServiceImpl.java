@@ -4,7 +4,6 @@ import com.micah.eshop.entity.model.PageParam;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -15,7 +14,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.CategoryDao;
-import com.micah.eshop.entity.CategoryEntity;
+import com.micah.eshop.entity.dao.CategoryEntity;
 import com.micah.eshop.service.CategoryService;
 
 

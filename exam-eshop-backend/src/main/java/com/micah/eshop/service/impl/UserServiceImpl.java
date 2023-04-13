@@ -23,7 +23,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.UserDao;
-import com.micah.eshop.entity.UserEntity;
+import com.micah.eshop.entity.dao.UserEntity;
 import com.micah.eshop.service.UserService;
 
 

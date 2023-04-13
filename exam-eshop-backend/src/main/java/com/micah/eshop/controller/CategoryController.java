@@ -1,24 +1,13 @@
 package com.micah.eshop.controller;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.micah.eshop.entity.model.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
-import com.micah.eshop.entity.CategoryEntity;
 import com.micah.eshop.service.CategoryService;
-import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.util.R;
 
 

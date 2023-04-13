@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.OrderItemDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.OrderItemEntity" id="orderItemMap">
+    <resultMap type="com.micah.eshop.entity.dao.OrderItemEntity" id="orderItemMap">
         <result property="id" column="id"/>
         <result property="orderId" column="order_id"/>
         <result property="productId" column="product_id"/>

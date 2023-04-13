@@ -1,4 +1,4 @@
-package com.micah.eshop.entity;
+package com.micah.eshop.entity.dao;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -11,17 +11,17 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 积分表
+ * 系统消息表
  *
  * @author micah
  * @email mxmicah@qq.com
  * @date 2023-04-10 16:01:24
  */
 @Data
-@ApiModel(value = "com.micah.eshop.entity.Point积分表实体")
+@ApiModel(value = "com.micah.eshop.entity.SystemMessage系统消息表实体")
 @Accessors(chain = true)
-@TableName("e_point")
-public class PointEntity implements Serializable {
+@TableName("e_system_message")
+public class SystemMessageEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -31,25 +31,20 @@ public class PointEntity implements Serializable {
 	@ApiModelProperty(value = "自增主键")
 private Long id;
 	/**
-	 * 用户ID
+	 * 消息标题
 	 */
-	@ApiModelProperty(value = "用户ID")
-private Long uid;
+	@ApiModelProperty(value = "消息标题")
+private String title;
 	/**
-	 * 积分总数
+	 * 消息内容
 	 */
-	@ApiModelProperty(value = "积分总数")
-private Integer totalPoint;
+	@ApiModelProperty(value = "消息内容")
+private String content;
 	/**
-	 * 可用积分
+	 * 消息状态，0-未读，1-已读
 	 */
-	@ApiModelProperty(value = "可用积分")
-private Integer availablePoint;
-	/**
-	 * 冻结积分
-	 */
-	@ApiModelProperty(value = "冻结积分")
-private Integer frozenPoint;
+	@ApiModelProperty(value = "消息状态，0-未读，1-已读")
+private Integer status;
 	/**
 	 * 创建时间
 	 */
@@ -61,9 +56,9 @@ private Date createTime;
 	@ApiModelProperty(value = "更新时间")
 private Date updateTime;
 	/**
-	 * 是否删除，0表示未删除，1表示已删除
+	 * 是否删除，0-否，1-是
 	 */
-	@ApiModelProperty(value = "是否删除，0表示未删除，1表示已删除")
+	@ApiModelProperty(value = "是否删除，0-否，1-是")
 private Integer isDel;
 
 }

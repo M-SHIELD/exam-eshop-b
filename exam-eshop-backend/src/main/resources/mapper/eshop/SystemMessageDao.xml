@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.SystemMessageDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.SystemMessageEntity" id="systemMessageMap">
+    <resultMap type="com.micah.eshop.entity.dao.SystemMessageEntity" id="systemMessageMap">
         <result property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="content" column="content"/>

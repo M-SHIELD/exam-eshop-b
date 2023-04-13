@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.micah.eshop.entity.model.ProductParam;
 import com.micah.eshop.entity.vo.ProductDto;
 import com.micah.eshop.util.PageUtils;
-import com.micah.eshop.entity.ProductEntity;
+import com.micah.eshop.entity.dao.ProductEntity;
 
 /**
  * 商品信息表

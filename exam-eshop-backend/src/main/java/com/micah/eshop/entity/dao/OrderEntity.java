@@ -1,4 +1,4 @@
-package com.micah.eshop.entity;
+package com.micah.eshop.entity.dao;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;

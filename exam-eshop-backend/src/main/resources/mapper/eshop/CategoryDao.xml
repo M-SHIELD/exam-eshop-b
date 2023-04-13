@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.CategoryDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.CategoryEntity" id="categoryMap">
+    <resultMap type="com.micah.eshop.entity.dao.CategoryEntity" id="categoryMap">
         <result property="id" column="id"/>
         <result property="cname" column="cname"/>
         <result property="level" column="level"/>

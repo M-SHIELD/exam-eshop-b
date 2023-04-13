@@ -1,8 +1,8 @@
 package com.micah.eshop.controller.user;
 
 import cn.hutool.core.util.NumberUtil;
-import com.micah.eshop.entity.ProductEntity;
-import com.micah.eshop.entity.UserBehaviorEntity;
+import com.micah.eshop.entity.dao.ProductEntity;
+import com.micah.eshop.entity.dao.UserBehaviorEntity;
 import com.micah.eshop.entity.model.UserBehaviorParam;
 import com.micah.eshop.enums.AppHttpCodeEnum;
 import com.micah.eshop.handler.SystemException;

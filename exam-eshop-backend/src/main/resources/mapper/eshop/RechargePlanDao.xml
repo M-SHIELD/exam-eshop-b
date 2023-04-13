@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.RechargePlanDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.RechargePlanEntity" id="rechargePlanMap">
+    <resultMap type="com.micah.eshop.entity.dao.RechargePlanEntity" id="rechargePlanMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="amount" column="amount"/>

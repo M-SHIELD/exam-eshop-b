@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.EvaluationDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.EvaluationEntity" id="evaluationMap">
+    <resultMap type="com.micah.eshop.entity.dao.EvaluationEntity" id="evaluationMap">
         <result property="id" column="id"/>
         <result property="orderId" column="order_id"/>
         <result property="uid" column="uid"/>

@@ -1,8 +1,8 @@
 package com.micah.eshop.service.impl;
 
 
-import com.micah.eshop.entity.OrderItemEntity;
-import com.micah.eshop.entity.ShopEntity;
+import com.micah.eshop.entity.dao.OrderItemEntity;
+import com.micah.eshop.entity.dao.ShopEntity;
 import com.micah.eshop.entity.model.OrderParam;
 import com.micah.eshop.entity.vo.OrderDto;
 import com.micah.eshop.service.OrderItemService;
@@ -22,7 +22,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.OrderDao;
-import com.micah.eshop.entity.OrderEntity;
+import com.micah.eshop.entity.dao.OrderEntity;
 import com.micah.eshop.service.OrderService;
 
 

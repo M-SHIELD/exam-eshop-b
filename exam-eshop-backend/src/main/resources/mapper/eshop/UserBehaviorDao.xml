@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.UserBehaviorDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.UserBehaviorEntity" id="userBehaviorMap">
+    <resultMap type="com.micah.eshop.entity.dao.UserBehaviorEntity" id="userBehaviorMap">
         <result property="id" column="id"/>
         <result property="userId" column="user_id"/>
         <result property="productId" column="product_id"/>

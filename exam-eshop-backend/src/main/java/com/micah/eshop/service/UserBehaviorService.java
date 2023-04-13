@@ -3,9 +3,8 @@ package com.micah.eshop.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.micah.eshop.entity.model.UserBehaviorParam;
 import com.micah.eshop.util.PageUtils;
-import com.micah.eshop.entity.UserBehaviorEntity;
+import com.micah.eshop.entity.dao.UserBehaviorEntity;
 
-import java.util.List;
 import java.util.Map;
 
 /**

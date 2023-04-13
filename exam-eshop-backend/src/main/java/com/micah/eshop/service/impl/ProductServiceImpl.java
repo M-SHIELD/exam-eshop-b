@@ -1,7 +1,7 @@
 package com.micah.eshop.service.impl;
 
-import com.micah.eshop.entity.SkuEntity;
-import com.micah.eshop.entity.UserBehaviorEntity;
+import com.micah.eshop.entity.dao.SkuEntity;
+import com.micah.eshop.entity.dao.UserBehaviorEntity;
 import com.micah.eshop.entity.model.ProductParam;
 import com.micah.eshop.entity.vo.ProductDto;
 import com.micah.eshop.service.SkuService;
@@ -17,7 +17,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.ProductDao;
-import com.micah.eshop.entity.ProductEntity;
+import com.micah.eshop.entity.dao.ProductEntity;
 import com.micah.eshop.service.ProductService;
 import org.springframework.util.StringUtils;
 

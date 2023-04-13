@@ -1,9 +1,8 @@
-package com.micah.eshop.entity;
+package com.micah.eshop.entity.dao;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
-import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
@@ -12,35 +11,45 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 用户钱包表
+ * 评价表
  *
  * @author micah
  * @email mxmicah@qq.com
  * @date 2023-04-10 16:01:25
  */
 @Data
-@ApiModel(value = "com.micah.eshop.entity.Wallet用户钱包表实体")
+@ApiModel(value = "com.micah.eshop.entity.Evaluation评价表实体")
 @Accessors(chain = true)
-@TableName("e_wallet")
-public class WalletEntity implements Serializable {
+@TableName("e_evaluation")
+public class EvaluationEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 自增主键
+	 * 评价ID
 	 */
 	@TableId
-	@ApiModelProperty(value = "自增主键")
-private Long id;
+	@ApiModelProperty(value = "评价ID")
+private Integer id;
+	/**
+	 * 订单ID
+	 */
+	@ApiModelProperty(value = "订单ID")
+private Integer orderId;
 	/**
 	 * 用户ID
 	 */
 	@ApiModelProperty(value = "用户ID")
-private Long uid;
+private Integer uid;
 	/**
-	 * 余额
+	 * 评分
 	 */
-	@ApiModelProperty(value = "余额")
-private BigDecimal balance;
+	@ApiModelProperty(value = "评分")
+private Integer score;
+	/**
+	 * 评价内容
+	 */
+	@ApiModelProperty(value = "评价内容")
+private String content;
 	/**
 	 * 创建时间
 	 */
@@ -52,9 +61,9 @@ private Date createTime;
 	@ApiModelProperty(value = "更新时间")
 private Date updateTime;
 	/**
-	 * 是否删除，0：否，1：是
+	 * 是否删除，0表示未删除，1表示已删除
 	 */
-	@ApiModelProperty(value = "是否删除，0：否，1：是")
+	@ApiModelProperty(value = "是否删除，0表示未删除，1表示已删除")
 private Integer isDel;
 
 }

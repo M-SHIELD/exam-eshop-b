@@ -10,7 +10,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.PointDao;
-import com.micah.eshop.entity.PointEntity;
+import com.micah.eshop.entity.dao.PointEntity;
 import com.micah.eshop.service.PointService;
 
 

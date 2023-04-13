@@ -1,8 +1,5 @@
 package com.micah.eshop.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
 import com.micah.eshop.entity.model.ProductParam;
 import com.micah.eshop.entity.vo.ProductDto;
 import com.micah.eshop.util.module.GetUserInfo;
@@ -10,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
-import com.micah.eshop.entity.ProductEntity;
 import com.micah.eshop.service.ProductService;
 import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.util.R;

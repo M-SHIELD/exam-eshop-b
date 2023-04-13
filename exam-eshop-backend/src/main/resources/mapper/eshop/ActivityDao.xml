@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.ActivityDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.ActivityEntity" id="activityMap">
+    <resultMap type="com.micah.eshop.entity.dao.ActivityEntity" id="activityMap">
         <result property="id" column="id"/>
         <result property="activityName" column="activity_name"/>
         <result property="activityDesc" column="activity_desc"/>

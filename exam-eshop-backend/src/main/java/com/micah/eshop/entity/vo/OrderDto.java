@@ -1,6 +1,6 @@
 package com.micah.eshop.entity.vo;
 
-import com.micah.eshop.entity.OrderItemEntity;
+import com.micah.eshop.entity.dao.OrderItemEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;

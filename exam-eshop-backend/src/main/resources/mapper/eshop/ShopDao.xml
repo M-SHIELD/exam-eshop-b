@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.ShopDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.ShopEntity" id="shopMap">
+    <resultMap type="com.micah.eshop.entity.dao.ShopEntity" id="shopMap">
         <result property="id" column="id"/>
         <result property="shopName" column="shop_name"/>
         <result property="shopDesc" column="shop_desc"/>

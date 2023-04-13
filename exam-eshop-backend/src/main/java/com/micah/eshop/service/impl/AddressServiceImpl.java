@@ -10,7 +10,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.AddressDao;
-import com.micah.eshop.entity.AddressEntity;
+import com.micah.eshop.entity.dao.AddressEntity;
 import com.micah.eshop.service.AddressService;
 
 

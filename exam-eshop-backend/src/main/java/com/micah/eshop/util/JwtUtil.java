@@ -15,14 +15,21 @@ import java.util.UUID;
 
 /**
  * JWT工具类
+ *
+ * @author Micah
  */
 
 @Slf4j
 public class JwtUtil {
 
-    //有效期为
-    public static final Long JWT_TTL = 2 * 60 * 60 * 1000L;// 60 * 60 *1000  一个小时
-    //设置秘钥明文
+    /**
+     * 过期时间 2小时
+     */
+    public static final Long JWT_TTL = 2 * 60 * 60 * 1000L;
+
+    /**
+     * 密钥
+     */
     public static final String JWT_KEY = "hechenghui";
 
     public static String getUUID() {
@@ -36,7 +43,8 @@ public class JwtUtil {
      * @return
      */
     public static String createJWT(String subject) {
-        JwtBuilder builder = getJwtBuilder(subject, null, getUUID());// 设置过期时间
+        // 设置过期时间
+        JwtBuilder builder = getJwtBuilder(subject, null, getUUID());
         return builder.compact();
     }
 
@@ -48,7 +56,8 @@ public class JwtUtil {
      * @return
      */
     public static String createJWT(String subject, Long ttlMillis) {
-        JwtBuilder builder = getJwtBuilder(subject, ttlMillis, getUUID());// 设置过期时间
+        // 设置过期时间
+        JwtBuilder builder = getJwtBuilder(subject, ttlMillis, getUUID());
         return builder.compact();
     }
 
@@ -121,7 +130,7 @@ public class JwtUtil {
             Claims claims = parseJWT(jwt);
             Date expiration = claims.getExpiration();
             Date date = new Date();
-            log.info("-------------------所减时间"+(date.getTime()- expiration.getTime()));
+            log.info("-------------------所减时间" + (date.getTime() - expiration.getTime()));
             if (expiration.before(date)) {
                 log.info("JWT令牌已过期");
                 return false;

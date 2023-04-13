@@ -7,13 +7,16 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.micah.eshop.util.PageUtils;
-//import com.micah.common.utils.Query;
+
 
 import com.micah.eshop.dao.SkuDao;
-import com.micah.eshop.entity.SkuEntity;
+import com.micah.eshop.entity.dao.SkuEntity;
 import com.micah.eshop.service.SkuService;
 
 
+/**
+ * @author Micah
+ */
 @Service("skuService")
 public class SkuServiceImpl extends ServiceImpl<SkuDao, SkuEntity> implements SkuService {
 
@@ -22,7 +25,7 @@ public class SkuServiceImpl extends ServiceImpl<SkuDao, SkuEntity> implements Sk
         IPage<SkuEntity> iPage = new Page<>(1,10);
         IPage<SkuEntity> page = this.page(
                 iPage,
-                new QueryWrapper<SkuEntity>()
+                new QueryWrapper<>()
         );
         return new PageUtils(page);
     }

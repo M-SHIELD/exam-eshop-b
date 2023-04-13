@@ -1,6 +1,6 @@
 package com.micah.eshop.dao;
 
-import com.micah.eshop.entity.SystemInfoEntity;
+import com.micah.eshop.entity.dao.SystemInfoEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -10,7 +10,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.RechargePlanDao;
-import com.micah.eshop.entity.RechargePlanEntity;
+import com.micah.eshop.entity.dao.RechargePlanEntity;
 import com.micah.eshop.service.RechargePlanService;
 
 

@@ -1,29 +1,29 @@
-package com.micah.eshop.entity;
+package com.micah.eshop.entity.dao;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 物流信息表
+ * SKU表
  *
  * @author micah
  * @email mxmicah@qq.com
- * @date 2023-04-10 16:01:24
+ * @date 2023-04-10 16:01:25
  */
 @Data
-@ApiModel(value = "com.micah.eshop.entity.Logistics物流信息表实体")
+@ApiModel(value = "com.micah.eshop.entity.SkuSKU表实体")
 @Accessors(chain = true)
-@TableName("e_logistics")
-public class LogisticsEntity implements Serializable {
+@TableName("e_sku")
+public class SkuEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -33,25 +33,30 @@ public class LogisticsEntity implements Serializable {
     @ApiModelProperty(value = "自增主键")
     private Long id;
     /**
-     * 订单ID
+     * 商品ID
      */
-    @ApiModelProperty(value = "订单ID")
-    private Long orderId;
+    @ApiModelProperty(value = "商品ID")
+    private Long productId;
     /**
-     * 物流单号
+     * SKU编码
      */
-    @ApiModelProperty(value = "物流单号")
-    private String logisticsNo;
+    @ApiModelProperty(value = "SKU编码")
+    private String skuCode;
     /**
-     * 物流公司名称
+     * 价格
      */
-    @ApiModelProperty(value = "物流公司名称")
-    private String logisticsCompany;
+    @ApiModelProperty(value = "价格")
+    private BigDecimal price;
     /**
-     * 物流状态，0-待发货，1-已发货，2-已签收
+     * 库存
      */
-    @ApiModelProperty(value = "物流状态，0-待发货，1-已发货，2-已签收")
-    private Integer status;
+    @ApiModelProperty(value = "库存")
+    private Integer stock;
+    /**
+     * 规格，如"颜色:红色,尺寸:XL"
+     */
+    @ApiModelProperty(value = "规格，如颜色:红色,尺寸:XL")
+    private String specification;
     /**
      * 创建时间
      */
@@ -63,9 +68,9 @@ public class LogisticsEntity implements Serializable {
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
     /**
-     * 是否删除，0-否，1-是
+     * 是否删除，0：否，1：是
      */
-    @ApiModelProperty(value = "是否删除，0-否，1-是")
+    @ApiModelProperty(value = "是否删除，0：否，1：是")
     private Integer isDel;
 
 }

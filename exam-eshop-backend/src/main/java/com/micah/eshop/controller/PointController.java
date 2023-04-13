@@ -13,7 +13,7 @@ import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.ApiOperation;
-import com.micah.eshop.entity.PointEntity;
+import com.micah.eshop.entity.dao.PointEntity;
 import com.micah.eshop.service.PointService;
 import com.micah.eshop.util.PageUtils;
 import com.micah.eshop.util.R;

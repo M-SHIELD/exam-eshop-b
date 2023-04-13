@@ -7,7 +7,6 @@ import com.micah.eshop.handler.SystemException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -18,7 +17,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.UserBehaviorDao;
-import com.micah.eshop.entity.UserBehaviorEntity;
+import com.micah.eshop.entity.dao.UserBehaviorEntity;
 import com.micah.eshop.service.UserBehaviorService;
 
 

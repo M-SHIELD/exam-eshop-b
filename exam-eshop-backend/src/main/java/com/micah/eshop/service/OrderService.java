@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.micah.eshop.entity.model.OrderParam;
 import com.micah.eshop.entity.vo.OrderDto;
 import com.micah.eshop.util.PageUtils;
-import com.micah.eshop.entity.OrderEntity;
+import com.micah.eshop.entity.dao.OrderEntity;
 
 import java.util.List;
 import java.util.Map;

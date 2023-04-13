@@ -7,10 +7,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.micah.eshop.util.PageUtils;
-//import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.WalletDao;
-import com.micah.eshop.entity.WalletEntity;
+import com.micah.eshop.entity.dao.WalletEntity;
 import com.micah.eshop.service.WalletService;
 
 

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.micah.eshop.entity.model.LoginParam;
 import com.micah.eshop.entity.model.RegisterParam;
 import com.micah.eshop.util.PageUtils;
-import com.micah.eshop.entity.UserEntity;
+import com.micah.eshop.entity.dao.UserEntity;
 import com.micah.eshop.util.R;
 
 import java.util.Map;

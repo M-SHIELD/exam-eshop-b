@@ -4,7 +4,7 @@
 <mapper namespace="com.micah.eshop.dao.WalletDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.micah.eshop.entity.WalletEntity" id="walletMap">
+    <resultMap type="com.micah.eshop.entity.dao.WalletEntity" id="walletMap">
         <result property="id" column="id"/>
         <result property="uid" column="uid"/>
         <result property="balance" column="balance"/>

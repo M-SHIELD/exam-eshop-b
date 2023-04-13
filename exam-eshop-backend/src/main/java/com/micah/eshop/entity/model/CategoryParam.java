@@ -27,5 +27,4 @@ public class CategoryParam {
     @ApiModelProperty(value = "关键字")
     private String keyword;
 
-
 }

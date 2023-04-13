@@ -10,7 +10,7 @@ import com.micah.eshop.util.PageUtils;
 //import com.micah.common.utils.Query;
 
 import com.micah.eshop.dao.SystemMessageDao;
-import com.micah.eshop.entity.SystemMessageEntity;
+import com.micah.eshop.entity.dao.SystemMessageEntity;
 import com.micah.eshop.service.SystemMessageService;
 
 

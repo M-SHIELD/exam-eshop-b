@@ -1,9 +1,8 @@
 package com.micah.eshop.entity.vo;
 
-import com.micah.eshop.entity.ProductEntity;
-import com.micah.eshop.entity.SkuEntity;
+import com.micah.eshop.entity.dao.ProductEntity;
+import com.micah.eshop.entity.dao.SkuEntity;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

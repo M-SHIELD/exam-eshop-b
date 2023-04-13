@@ -3,10 +3,9 @@ package com.micah.eshop.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.micah.eshop.entity.model.PageParam;
 import com.micah.eshop.util.PageUtils;
-import com.micah.eshop.entity.CategoryEntity;
+import com.micah.eshop.entity.dao.CategoryEntity;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 商品分类表
