@@ -10,7 +10,7 @@
       <img src="./images/yanxuan.svg" />
       <span class="text">欢迎来到网易严选</span>
     </div>
-   <div class="landingbox">
+   <div class="registerbox">
     <van-form validate-first>
       <van-field
           v-model="phone"
@@ -46,7 +46,7 @@
           :rules="[{ required: true, message: '请填写密码' }]"
       />
       <div style="margin: 16px;">
-        <van-button round block type="info" native-type="submit" @click="golanding">注册</van-button>
+        <van-button round block type="info" native-type="submit" @click="goregister">注册</van-button>
       </div>
     </van-form>
    </div>
@@ -54,10 +54,10 @@
 </template>
 
 <script>
-import {postlanding} from "@/api/landing";
+import {postregister} from "@/api/register";
 import {Toast} from "vant";
 export default {
-  name: "landing",
+  name: "register",
   data() {
     return {
       phone:'',
@@ -75,9 +75,9 @@ export default {
         Toast("请输入手机号码！")
       }
     },
-    golanding(){
+    goregister(){
       if(this.phone !== '' && this.sms == '135791' && this.username !== '' && this.email !== '' && this.password !== ''){
-        postlanding({
+        postregister({
           email:this.email,
           password: this.password,
           phone: this.phone,
@@ -112,7 +112,7 @@ export default {
     color: #cccccc;
   }
 }
-.landingbox{
+.registerbox{
   width: 100%;
   margin-top: 1rem;
   .landignbt{

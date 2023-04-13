@@ -5,7 +5,7 @@
         left-arrow
         right-text="注册"
         @click-left="$router.push('/')"
-        @click-right="$router.push('/landing')"
+        @click-right="$router.push('/register')"
     />
     <div class="textbox">
       <span>手机快捷登录</span><br/>

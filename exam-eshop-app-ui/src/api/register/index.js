@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function postlanding(params) {
+export function postregister(params) {
     return request({
         url: '/user/register',
         data: params,

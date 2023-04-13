@@ -10,7 +10,7 @@
       />
       <span class="user-info-name" v-if="token">micah</span>
       <span class="user-info-name" v-if="!token"><span @click="$router.push('/login')">登录/</span><span
-          @click="$router.push('/landing')">注册</span></span>
+          @click="$router.push('/register')">注册</span></span>
     </van-row>
 
     <!--    钱包-->

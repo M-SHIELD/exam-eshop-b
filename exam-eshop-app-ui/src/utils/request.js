@@ -25,6 +25,12 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     res => {
         if (res.data.code !== undefined) {
+            if (res.data.code === 406) {
+                Toast.fail('登录失效，请重新登录')
+                localStorage.removeItem('TOKEN')
+                location.href = '/login'
+                return
+            }
             if (res.data.code !== 0 && res.data.code !== 200 && res.data.success !== true) {
                 Toast.fail('请求失败:'+res.data.msg)
                 //抛出前端错误
