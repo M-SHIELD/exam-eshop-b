@@ -98,6 +98,7 @@
 import {mapMutations, mapState} from "vuex"
 import {Toast} from "vant"
 import {getdetails} from "@/api/product";
+import {addcollect, delcollect} from "@/api/collect";
 export default {
   name: "detail",
   data() {
@@ -230,12 +231,33 @@ export default {
     ...mapMutations(['ADD_TO_CART','addFooterPrint']),
     collect() {
       this.goods.isCollect = !this.goods.isCollect
+      if(this.goods.isCollect){
+        addcollect({
+          behaviorType: 1,
+          currPage: 1,
+          productId: this.goodsId
+        }).then(res => {
+          if(res.code === 200 ){
+            Toast("收藏成功！")
+          }
+        })
+      }else{
+        delcollect({
+          behaviorType: 1,
+          currPage: 0,
+          productId: this.goodsId
+        }).then(res => {
+          console.log(res)
+          if(res.code === 200 ){
+            Toast("取消收藏成功！")
+          }
+        })
+      }
     },
     initData() {
       getdetails(this.goodsId).then(res => {
         if (res.code === 200) {
               this.goods = res.data
-              console.log(res.data)
               this.goods.picture = res.data.image
         } else {
               this.goods = {}
