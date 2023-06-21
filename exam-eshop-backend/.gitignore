@@ -29,3 +29,5 @@ build/
 
 ### VS Code ###
 .vscode/
+**/application-prod.yml
+git rm --cached **/application-prod.yml

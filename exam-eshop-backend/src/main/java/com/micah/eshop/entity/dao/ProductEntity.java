@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+//import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.ApiModel;
@@ -94,35 +94,29 @@ public class ProductEntity implements Serializable {
      * 商品图片
      */
     @ApiModelProperty(value = "商品图片")
-    @Schema(description = "商品图片")
     private String image;
 
     /**
      * 商品预览图片
      */
     @ApiModelProperty(value = "商品预览图片")
-    @Schema(description = "商品预览图片")
     private String sliderImage;
     /**
      * 是否展示
      */
     @ApiModelProperty(value = "是否展示")
-    @Schema(description = "是否展示")
     private Boolean isShow;
 
     /**
      * 是否热门
      */
     @ApiModelProperty(value = "是否热门")
-    @Schema(description = "是否热门")
     private Boolean isHot;
     /**
      * 所需积分
      */
     @ApiModelProperty(value = "所需积分")
-    @Schema(description = "所需积分")
     private BigDecimal integral;
     @ApiModelProperty(value = "店铺id")
-    @Schema(description = "店铺id")
     private BigDecimal shopId;
 }
